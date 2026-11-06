@@ -1,413 +1,507 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RAMAYANA — The Story That Lives Through Eternity</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* ===================================================================
+   RAMAYANA — CINEMATIC FAN TRIBUTE SITE
+   Palette: deep royal red, antique gold, saffron, maroon, midnight,
+   sandstone, ivory.
+=================================================================== */
 
-<!-- ============ LOADER ============ -->
-<div id="loader" aria-hidden="true">
-  <div class="loader-sigil">
-    <svg viewBox="0 0 120 120" width="90" height="90">
-      <circle cx="60" cy="60" r="50" class="loader-ring"/>
-      <circle cx="60" cy="60" r="34" class="loader-ring loader-ring--rev"/>
-      <text x="60" y="71" text-anchor="middle" class="loader-glyph">ॐ</text>
-    </svg>
-  </div>
-  <p class="loader-text">entering the age of dharma</p>
-</div>
+:root{
+  --royal-red:#7a0c1e;
+  --gold:#c9a24b;
+  --gold-bright:#e8c874;
+  --saffron:#e0892c;
+  --maroon:#2d0a10;
+  --midnight:#0a0706;
+  --sandstone:#c9a378;
+  --ivory:#f3ead9;
 
-<!-- ============ PARTICLE / ATMOSPHERE CANVAS ============ -->
-<canvas id="atmosphere" aria-hidden="true"></canvas>
+  --font-display:'Cinzel', serif;
+  --font-display-deco:'Cinzel Decorative', serif;
+  --font-body:'Spectral', serif;
 
-<!-- ============ NAVIGATION ============ -->
-<header id="site-nav">
-  <div class="nav-inner">
-    <a href="#home" class="nav-brand">रामायण<span>RAMAYANA</span></a>
-    <nav class="nav-links" id="nav-links">
-      <a href="#home" data-nav>Home</a>
-      <a href="#epic" data-nav>The Epic</a>
-      <a href="#characters" data-nav>Characters</a>
-      <a href="#world" data-nav>The World</a>
-      <a href="#about" data-nav>About</a>
-      <a href="#partners" data-nav>Partners</a>
-    </nav>
-    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
+  --nav-h:84px;
+  --ease:cubic-bezier(.22,.8,.25,1);
+}
 
-<main>
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth; scroll-padding-top:var(--nav-h);}
 
-<!-- ============ HERO ============ -->
-<section id="home" class="hero">
-  <div class="hero-bg">
-    <div class="hero-pillars" aria-hidden="true"></div>
-    <div class="hero-sun" aria-hidden="true"></div>
-    <div class="hero-clouds" aria-hidden="true"></div>
-  </div>
+body{
+  margin:0;
+  background:var(--midnight);
+  color:var(--ivory);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
 
-  <div class="hero-content">
-    <p class="hero-kicker reveal-up">a Namit Malhotra &amp; Nitesh Tiwari motion picture</p>
-    <h1 class="hero-title">
-      <span class="hero-title-line reveal-letters">RAMAYANA</span>
-    </h1>
-    <p class="hero-tagline reveal-up">THE STORY THAT LIVES THROUGH ETERNITY</p>
-    <p class="hero-intro reveal-up">
-      A two-part cinematic retelling of Maharishi Valmiki's epic — the journey of Prince Rama of Ayodhya,
-      his wife Sita, and his brother Lakshmana, through exile, devotion and the eternal struggle between
-      dharma and adharma. Directed by Nitesh Tiwari. Produced by Namit Malhotra.
-    </p>
-    <div class="hero-actions reveal-up">
-      <a href="#epic" class="btn btn-primary">Explore the Epic</a>
-      <a href="#characters" class="btn btn-ghost">Meet the Characters</a>
-    </div>
-  </div>
+img{max-width:100%; display:block;}
+ul{margin:0; padding:0; list-style:none;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
 
-  <div class="hero-info-bar reveal-up">
-    <div><span>Director</span>Nitesh Tiwari</div>
-    <div><span>Producer</span>Namit Malhotra</div>
-    <div><span>Part One</span>November 6, 2026</div>
-    <div><span>Part Two</span>Diwali 2027</div>
-  </div>
+h1,h2,h3,h4{font-family:var(--font-display); margin:0; font-weight:600; letter-spacing:.03em;}
 
-  <a href="#epic" class="scroll-cue" aria-label="Scroll to explore">
-    <span></span>
-  </a>
-</section>
+::selection{background:var(--gold); color:var(--midnight);}
 
-<!-- ============ THE EPIC ============ -->
-<section id="epic" class="section epic-section">
-  <div class="section-head reveal-up">
-    <h2>The Epic</h2>
-    <p class="section-sub">
-      The Ramayana is one of the two great Sanskrit epics of ancient India, traditionally attributed to
-      Maharishi Valmiki. What follows is the traditional narrative arc of the epic. Events marked
-      <span class="tag tag-part1">Part One</span> are confirmed to appear in Nitesh Tiwari's
-      <em>Ramayana: Part One</em>; the rest belong to the wider epic and may be depicted in Part Two or not
-      filmed at all. Nothing here is invented dialogue or scene detail.
-    </p>
-  </div>
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
+}
 
-  <ol class="timeline">
-    <li class="timeline-item reveal-up" data-part="1">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <span class="tag tag-part1">Part One</span>
-        <h3>The Kingdom of Ayodhya</h3>
-        <p>King Dasharatha of Ayodhya, childless for years, performs the Putrakameshti yagna. Rama is
-        born to Queen Kaushalya, with Bharata, Lakshmana and Shatrughna born soon after to Kaikeyi and
-        Sumitra.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up" data-part="1">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <span class="tag tag-part1">Part One</span>
-        <h3>Childhood &amp; Training</h3>
-        <p>The four princes are raised and trained in Ayodhya under the guidance of Sage Vashishtha,
-        learning statecraft, scripture and the arts of war.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up" data-part="1">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <span class="tag tag-part1">Part One</span>
-        <h3>Sage Vishwamitra's Call</h3>
-        <p>Sage Vishwamitra arrives at Ayodhya asking for Rama's protection against demons harassing his
-        hermitage. Rama and Lakshmana leave with him, beginning their first trials.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up" data-part="1">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <span class="tag tag-part1">Part One</span>
-        <h3>Mithila &amp; the Swayamvara</h3>
-        <p>In Mithila, Rama meets Sita, daughter of King Janaka, and wins her hand by stringing and
-        breaking the divine bow of Shiva at her swayamvara.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up" data-part="1">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <span class="tag tag-part1">Part One</span>
-        <h3>Kaikeyi's Two Boons</h3>
-        <p>On the eve of Rama's coronation, Manthara persuades Kaikeyi to claim two boons once promised by
-        Dasharatha: Bharata's coronation, and Rama's exile for fourteen years.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up" data-part="1">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <span class="tag tag-part1">Part One</span>
-        <h3>The Fourteen-Year Exile</h3>
-        <p>Rama accepts the exile without protest. Sita and Lakshmana insist on accompanying him, and the
-        three leave Ayodhya's comforts for the forest.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <h3>Life in the Forest</h3>
-        <p>The three live an austere life moving between hermitages, eventually settling at Panchavati in
-        the Dandaka forest, encountering sages and forest-dwellers along the way.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <h3>Surpanakha's Encounter</h3>
-        <p>Ravana's sister Surpanakha approaches Rama and is rebuffed; in the confrontation that follows,
-        Lakshmana wounds her, and she flees to Lanka seeking revenge.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <h3>The Golden Deer</h3>
-        <p>Ravana sends the demon Maricha, disguised as a golden deer, to lure Rama away from the
-        hermitage, drawing Lakshmana away as well and leaving Sita alone.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <h3>Sita's Abduction</h3>
-        <p>Disguised as a mendicant, Ravana abducts Sita and carries her to Lanka. The vulture Jatayu
-        intervenes to protect her and is mortally wounded by Ravana.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <h3>The Search Begins</h3>
-        <p>Rama and Lakshmana search the forests for Sita, meeting the dying Jatayu, and eventually
-        forming an alliance with Sugriva, the exiled king of the vanaras of Kishkindha.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <h3>Hanuman's Devotion</h3>
-        <p>Hanuman, minister to Sugriva, becomes Rama's most devoted follower. He leaps across the ocean
-        to Lanka, finds Sita in captivity, and returns with news of her.</p>
-      </div>
-    </li>
-    <li class="timeline-item reveal-up">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
-        <h3>The War in Lanka</h3>
-        <p>The vanara army builds a bridge to Lanka. After a prolonged war, Rama confronts and defeats
-        Ravana, securing the triumph of dharma over adharma.</p>
-      </div>
-    </li>
-  </ol>
-</section>
+/* ---------- Golden border texture used throughout ---------- */
+.gold-frame{
+  border:1px solid rgba(201,162,75,.4);
+  position:relative;
+}
+.gold-frame::before{
+  content:"";
+  position:absolute; inset:5px;
+  border:1px solid rgba(201,162,75,.18);
+  pointer-events:none;
+}
 
-<!-- ============ CHARACTERS ============ -->
-<section id="characters" class="section characters-section">
-  <div class="section-head reveal-up">
-    <h2>The Character Universe</h2>
-    <p class="section-sub">Every figure of the epic, and the artist who brings them to the screen.</p>
-  </div>
+/* ===================================================================
+   LOADER
+=================================================================== */
+#loader{
+  position:fixed; inset:0; z-index:9999;
+  background:var(--midnight);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:22px;
+  transition:opacity 1.1s var(--ease), visibility 1.1s var(--ease);
+}
+#loader.loader-hidden{opacity:0; visibility:hidden; pointer-events:none;}
+.loader-sigil{position:relative;}
+.loader-ring{fill:none; stroke:var(--gold); stroke-width:1; opacity:.8; transform-origin:60px 60px; animation:spin 6s linear infinite;}
+.loader-ring--rev{stroke:var(--saffron); animation-direction:reverse; animation-duration:9s;}
+.loader-glyph{fill:var(--gold-bright); font-size:30px; font-family:var(--font-display);}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loader-text{
+  font-family:var(--font-display); letter-spacing:.35em; font-size:11px;
+  text-transform:uppercase; color:var(--sandstone);
+}
 
-  <div class="char-controls reveal-up">
-    <div class="char-filters" role="tablist" aria-label="Filter characters by realm">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="ayodhya">Ayodhya</button>
-      <button class="filter-btn" data-filter="mithila">Mithila</button>
-      <button class="filter-btn" data-filter="lanka">Lanka</button>
-      <button class="filter-btn" data-filter="divine">Divine &amp; Vanara</button>
-    </div>
-    <div class="char-search">
-      <input type="search" id="char-search-input" placeholder="Search characters…" aria-label="Search characters">
-    </div>
-  </div>
+/* ===================================================================
+   ATMOSPHERE CANVAS (particles)
+=================================================================== */
+#atmosphere{
+  position:fixed; inset:0; z-index:1;
+  pointer-events:none; opacity:.65;
+}
 
-  <h3 class="char-subheading reveal-up">Main Characters</h3>
-  <div class="char-grid char-grid--main" id="char-grid-main"></div>
+/* ===================================================================
+   NAVIGATION
+=================================================================== */
+#site-nav{
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  height:var(--nav-h);
+  background:transparent;
+  transition:background .5s var(--ease), box-shadow .5s var(--ease), height .4s var(--ease);
+}
+#site-nav.scrolled{
+  background:rgba(10,7,6,.86);
+  backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 rgba(201,162,75,.25);
+  height:68px;
+}
+.nav-inner{
+  max-width:1400px; margin:0 auto; height:100%;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 clamp(20px,4vw,56px);
+}
+.nav-brand{
+  font-family:var(--font-display-deco); font-weight:700;
+  font-size:22px; color:var(--gold-bright); letter-spacing:.04em;
+  display:flex; flex-direction:column; line-height:1;
+}
+.nav-brand span{
+  font-family:var(--font-display); font-size:9px; letter-spacing:.4em;
+  color:var(--sandstone); margin-top:5px; font-weight:400;
+}
+.nav-links{display:flex; gap:clamp(18px,2.4vw,40px);}
+.nav-links a{
+  position:relative; font-size:13px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ivory); padding:6px 2px;
+}
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:0; width:0; height:1.5px;
+  background:linear-gradient(90deg,var(--gold),var(--saffron));
+  transition:width .35s var(--ease);
+}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+#nav-toggle{
+  display:none; background:none; border:0; width:34px; height:24px;
+  flex-direction:column; justify-content:space-between; padding:0;
+}
+#nav-toggle span{display:block; height:1.5px; background:var(--gold); border-radius:2px; transition:transform .3s var(--ease), opacity .3s var(--ease);}
+#nav-toggle.open span:nth-child(1){transform:translateY(10.5px) rotate(45deg);}
+#nav-toggle.open span:nth-child(2){opacity:0;}
+#nav-toggle.open span:nth-child(3){transform:translateY(-10.5px) rotate(-45deg);}
 
-  <h3 class="char-subheading reveal-up">Supporting Characters</h3>
-  <div class="char-grid char-grid--support" id="char-grid-support"></div>
-</section>
+/* ===================================================================
+   HERO
+=================================================================== */
+.hero{
+  position:relative; min-height:100vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:calc(var(--nav-h) + 40px) 24px 60px;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-bg{position:absolute; inset:0; z-index:-1;}
+.hero-bg::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 50% 28%, rgba(224,137,44,.18), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(122,12,30,.5), transparent 65%),
+    linear-gradient(180deg,#0a0706 0%, #190c0c 45%, #0a0706 100%);
+}
+.hero-sun{
+  position:absolute; top:12%; left:50%; translate:-50% 0;
+  width:420px; height:420px; border-radius:50%;
+  background:radial-gradient(circle, rgba(232,200,116,.5) 0%, rgba(232,200,116,0) 70%);
+  filter:blur(10px);
+  animation:sunpulse 7s ease-in-out infinite;
+}
+@keyframes sunpulse{0%,100%{opacity:.55; transform:translate(-50%,0) scale(1);}50%{opacity:.85; transform:translate(-50%,0) scale(1.08);}}
+.hero-pillars{
+  position:absolute; inset:0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.55) 0 2.4%, transparent 2.4% 11%);
+  opacity:.4; mix-blend-mode:multiply;
+}
+.hero-clouds{
+  position:absolute; left:-10%; right:-10%; top:18%; height:220px;
+  background:linear-gradient(180deg, rgba(243,234,217,.08), transparent);
+  filter:blur(18px);
+  animation:driftclouds 50s linear infinite;
+}
+@keyframes driftclouds{from{transform:translateX(-4%);}to{transform:translateX(4%);}}
 
-<!-- ============ CHARACTER PROFILE MODAL ============ -->
-<div id="char-modal" class="char-modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="char-modal-backdrop" data-close></div>
-  <div class="char-modal-panel">
-    <button class="char-modal-close" data-close aria-label="Close profile">&times;</button>
-    <button class="char-modal-nav char-modal-prev" id="char-prev" aria-label="Previous character">&#10094;</button>
-    <button class="char-modal-nav char-modal-next" id="char-next" aria-label="Next character">&#10095;</button>
+.hero-content{position:relative; z-index:2; max-width:860px;}
+.hero-kicker{
+  font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--sandstone);
+  margin:0 0 22px;
+}
+.hero-title{margin:0 0 18px;}
+.hero-title-line{
+  font-family:var(--font-display-deco); font-weight:900;
+  font-size:clamp(52px,11vw,138px);
+  letter-spacing:.07em;
+  background:linear-gradient(180deg,var(--gold-bright) 10%, var(--gold) 45%, var(--saffron) 75%, var(--gold) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:0 0 70px rgba(224,137,44,.35);
+  display:inline-block;
+}
+.hero-tagline{
+  font-family:var(--font-display); font-size:clamp(12px,1.6vw,16px);
+  letter-spacing:.42em; text-transform:uppercase; color:var(--ivory);
+  margin:0 0 30px;
+}
+.hero-intro{
+  font-size:17px; color:rgba(243,234,217,.82); max-width:640px; margin:0 auto 38px;
+}
+.hero-actions{display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin-bottom:56px;}
 
-    <div class="char-modal-scroll">
-      <!-- PART A: CHARACTER -->
-      <section class="char-part char-part--character">
-        <div class="char-portrait" id="modal-char-portrait"></div>
-        <div class="char-info">
-          <span class="char-kicker" id="modal-char-realm"></span>
-          <h2 id="modal-char-name"></h2>
-          <p class="char-role" id="modal-char-role"></p>
-          <div class="char-detail-grid">
-            <div><h4>Background</h4><p id="modal-char-background"></p></div>
-            <div><h4>Personality</h4><p id="modal-char-personality"></p></div>
-            <div><h4>Family</h4><p id="modal-char-family"></p></div>
-            <div id="modal-char-powers-wrap"><h4>Powers &amp; Abilities</h4><p id="modal-char-powers"></p></div>
-            <div><h4>Importance to the Story</h4><p id="modal-char-importance"></p></div>
-            <div><h4>Relationships</h4><p id="modal-char-relationships"></p></div>
-          </div>
-        </div>
-      </section>
+.btn{
+  display:inline-block; padding:16px 36px; font-family:var(--font-display);
+  font-size:12.5px; letter-spacing:.2em; text-transform:uppercase;
+  border-radius:2px; transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease), color .35s var(--ease);
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold-bright),var(--saffron));
+  color:#1a0b05; font-weight:600;
+  box-shadow:0 10px 30px -10px rgba(224,137,44,.6);
+}
+.btn-primary:hover{transform:translateY(-3px); box-shadow:0 16px 40px -10px rgba(224,137,44,.75);}
+.btn-ghost{
+  border:1px solid rgba(201,162,75,.6); color:var(--gold-bright); background:rgba(201,162,75,.05);
+}
+.btn-ghost:hover{background:rgba(201,162,75,.16); transform:translateY(-3px);}
 
-      <div class="char-part-divider">
-        <span>PORTRAYED BY</span>
-      </div>
+.hero-info-bar{
+  position:relative; z-index:2;
+  display:grid; grid-template-columns:repeat(4,auto); gap:clamp(20px,5vw,64px);
+  padding-top:28px; border-top:1px solid rgba(201,162,75,.25);
+}
+.hero-info-bar div{font-size:13px; text-align:left; white-space:nowrap;}
+.hero-info-bar span{display:block; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--sandstone); margin-bottom:4px;}
 
-      <!-- PART B: ACTOR -->
-      <section class="char-part char-part--actor">
-        <div class="actor-portrait" id="modal-actor-portrait"></div>
-        <div class="actor-info">
-          <h3 id="modal-actor-name"></h3>
-          <p class="actor-bio" id="modal-actor-bio"></p>
-          <div class="actor-detail-grid">
-            <div><h4>Notable Films</h4><p id="modal-actor-films"></p></div>
-            <div id="modal-actor-awards-wrap"><h4>Recognition</h4><p id="modal-actor-awards"></p></div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
+.scroll-cue{
+  position:absolute; bottom:26px; left:50%; translate:-50% 0; z-index:2;
+  width:22px; height:36px; border:1px solid rgba(201,162,75,.6); border-radius:12px;
+}
+.scroll-cue span{
+  display:block; width:4px; height:8px; margin:6px auto 0; border-radius:2px;
+  background:var(--gold-bright); animation:scrollcue 1.8s ease-in-out infinite;
+}
+@keyframes scrollcue{0%{opacity:0; transform:translateY(0);}30%{opacity:1;}100%{opacity:0; transform:translateY(12px);}}
 
-<!-- ============ THE WORLD ============ -->
-<section id="world" class="section world-section">
-  <div class="section-head reveal-up">
-    <h2>The World of Ramayana</h2>
-    <p class="section-sub">The kingdoms and wilds through which the epic moves.</p>
-  </div>
-  <div class="world-grid" id="world-grid"></div>
-</section>
+/* ===================================================================
+   SECTIONS — general
+=================================================================== */
+.section{
+  position:relative; z-index:2;
+  max-width:1360px; margin:0 auto; padding:120px 24px;
+}
+.section-head{max-width:760px; margin:0 auto 64px; text-align:center;}
+.section-head h2{
+  font-size:clamp(32px,5vw,52px); color:var(--gold-bright);
+  margin-bottom:18px;
+}
+.section-sub{color:rgba(243,234,217,.78); font-size:16.5px;}
+.tag{
+  display:inline-block; font-family:var(--font-display); font-size:10px; letter-spacing:.15em;
+  text-transform:uppercase; padding:4px 10px; border-radius:2px; margin:0 2px;
+}
+.tag-part1{background:rgba(224,137,44,.18); color:var(--saffron); border:1px solid rgba(224,137,44,.5);}
 
-<!-- ============ ABOUT ============ -->
-<section id="about" class="section about-section">
-  <div class="section-head reveal-up">
-    <h2>About the Film</h2>
-    <p class="section-sub">
-      <strong>Ramayana</strong> is a two-part Hindi-language mythological epic directed by Nitesh Tiwari
-      and produced by Namit Malhotra. Part One released worldwide on November 6, 2026; Part Two is
-      slated for Diwali 2027.
-    </p>
-  </div>
+/* ===================================================================
+   TIMELINE (The Epic)
+=================================================================== */
+.timeline{
+  position:relative; max-width:880px; margin:0 auto; padding-left:40px;
+  border-left:1px solid rgba(201,162,75,.3);
+}
+.timeline-item{position:relative; padding:0 0 52px 28px;}
+.timeline-item:last-child{padding-bottom:0;}
+.timeline-marker{
+  position:absolute; left:-45px; top:4px; width:11px; height:11px; border-radius:50%;
+  background:var(--gold-bright); box-shadow:0 0 0 4px rgba(10,7,6,1), 0 0 16px rgba(224,137,44,.7);
+}
+.timeline-card h3{font-size:20px; color:var(--ivory); margin:8px 0 10px;}
+.timeline-card p{color:rgba(243,234,217,.75); font-size:15.5px;}
 
-  <div class="about-leads reveal-up">
-    <article class="lead-card">
-      <h3>Nitesh Tiwari — Director</h3>
-      <p>An Indian filmmaker best known for directing <em>Dangal</em> (2016) and <em>Chhichhore</em>
-      (2019). He co-wrote Ramayana's screenplay and directs both parts of the adaptation.</p>
-    </article>
-    <article class="lead-card">
-      <h3>Namit Malhotra — Producer</h3>
-      <p>Indian entrepreneur and founder of Prime Focus, and chairman and group chief executive of
-      DNEG. Ramayana is produced through Prime Focus Studios, bringing together global VFX
-      infrastructure for the production.</p>
-    </article>
-    <article class="lead-card">
-      <h3>Yash — Co-Producer &amp; Actor</h3>
-      <p>Indian actor known for the <em>K.G.F.</em> film series, who plays Ravana and co-produces the
-      film through his banner, Monster Mind Creations.</p>
-    </article>
-  </div>
+/* ===================================================================
+   CHARACTERS
+=================================================================== */
+.char-controls{
+  display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between;
+  margin-bottom:48px;
+}
+.char-filters{display:flex; flex-wrap:wrap; gap:10px;}
+.filter-btn{
+  background:transparent; border:1px solid rgba(201,162,75,.35); color:var(--sandstone);
+  padding:9px 18px; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
+  border-radius:20px; transition:all .3s var(--ease);
+}
+.filter-btn:hover{border-color:var(--gold); color:var(--ivory);}
+.filter-btn.active{background:var(--gold); color:var(--midnight); border-color:var(--gold); font-weight:600;}
+.char-search input{
+  background:rgba(243,234,217,.06); border:1px solid rgba(201,162,75,.3); color:var(--ivory);
+  padding:11px 18px; border-radius:20px; font-family:var(--font-body); font-size:14px; min-width:230px;
+}
+.char-search input::placeholder{color:rgba(243,234,217,.4);}
+.char-search input:focus{outline:2px solid var(--gold); outline-offset:2px;}
 
-  <div class="about-grid reveal-up">
-    <div class="about-block">
-      <h4>Production Companies</h4>
-      <ul><li>Prime Focus Studios</li><li>Monster Mind Creations</li><li>DNEG (VFX &amp; production partner)</li></ul>
-    </div>
-    <div class="about-block">
-      <h4>Distribution</h4>
-      <ul><li>Sony Pictures</li><li>Dharma Productions</li></ul>
-    </div>
-    <div class="about-block">
-      <h4>Music</h4>
-      <ul><li>Hans Zimmer</li><li>A. R. Rahman</li></ul>
-      <p class="about-note">Both composers have contributed to the film's score, pairing an
-      internationally renowned cinematic composer with one of India's most celebrated musicians.</p>
-    </div>
-    <div class="about-block">
-      <h4>Creative Team</h4>
-      <ul>
-        <li>Shridhar Raghavan — Screenplay</li>
-        <li>Shreyas Jain — Dialogues</li>
-        <li>Pankaj Kumar — Cinematography</li>
-        <li>Mahesh Limaye — Cinematography</li>
-        <li>Huzefa Lokhandwala — Editing</li>
-        <li>Ravi Bansal — Production Design</li>
-        <li>Ramsey Avery — Production Design</li>
-        <li>Terry Notary &amp; Guy Norris — Action Choreography</li>
-      </ul>
-    </div>
-  </div>
-</section>
+.char-subheading{
+  font-size:14px; letter-spacing:.3em; text-transform:uppercase; color:var(--sandstone);
+  margin:56px 0 26px; text-align:center;
+}
+.char-subheading:first-of-type{margin-top:0;}
 
-<!-- ============ PARTNERS ============ -->
-<section id="partners" class="section partners-section">
-  <div class="section-head reveal-up">
-    <h2>Partners &amp; Supporters</h2>
-    <p class="section-sub">A clear distinction between the organisations behind the film.</p>
-  </div>
+.char-grid{display:grid; gap:26px;}
+.char-grid--main{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.char-grid--support{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));}
 
-  <div class="partners-grid reveal-up">
-    <div class="partner-block">
-      <h4>Production</h4>
-      <ul><li>Prime Focus Studios</li><li>Monster Mind Creations</li></ul>
-    </div>
-    <div class="partner-block">
-      <h4>Visual Effects</h4>
-      <ul><li>DNEG</li></ul>
-    </div>
-    <div class="partner-block">
-      <h4>Distribution</h4>
-      <ul><li>Sony Pictures</li><li>Dharma Productions</li></ul>
-    </div>
-    <div class="partner-block partner-block--tba">
-      <h4>Official Commercial Sponsors</h4>
-      <p>Official commercial sponsors to be announced.</p>
-    </div>
-  </div>
-</section>
+.char-card{
+  position:relative; cursor:pointer; border-radius:4px; overflow:hidden;
+  background:linear-gradient(160deg, rgba(122,12,30,.35), rgba(10,7,6,.9));
+  border:1px solid rgba(201,162,75,.25);
+  transition:transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+  display:flex; flex-direction:column;
+}
+.char-card:hover, .char-card:focus-visible{
+  transform:translateY(-8px);
+  border-color:var(--gold);
+  box-shadow:0 20px 50px -20px rgba(224,137,44,.5);
+}
+.char-card:hover .char-card-portrait, .char-card:focus-visible .char-card-portrait{transform:scale(1.06);}
+.char-card-portrait{
+  aspect-ratio:3/4; width:100%; overflow:hidden; position:relative;
+  transition:transform .6s var(--ease);
+}
+.char-card-portrait .ph{
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display-deco); font-size:42px; color:rgba(243,234,217,.85);
+}
+.char-grid--support .char-card-portrait .ph{font-size:26px;}
+.char-card-portrait::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(0deg, rgba(10,7,6,.95) 5%, transparent 55%);
+}
+.char-card-body{padding:16px 16px 18px; position:relative; z-index:1; margin-top:-2px;}
+.char-card-name{font-size:17px; color:var(--gold-bright); margin:0 0 3px;}
+.char-grid--support .char-card-name{font-size:14px;}
+.char-card-role{font-size:12.5px; color:rgba(243,234,217,.65); margin:0;}
+.char-card-actor{font-size:11px; color:var(--sandstone); margin-top:6px; letter-spacing:.03em;}
 
-</main>
+/* ===================================================================
+   CHARACTER MODAL
+=================================================================== */
+.char-modal{
+  position:fixed; inset:0; z-index:1000; visibility:hidden; opacity:0;
+  transition:opacity .4s var(--ease), visibility .4s var(--ease);
+}
+.char-modal.open{visibility:visible; opacity:1;}
+.char-modal-backdrop{position:absolute; inset:0; background:rgba(5,3,2,.88); backdrop-filter:blur(6px);}
+.char-modal-panel{
+  position:relative; max-width:900px; width:92%; margin:4vh auto; max-height:92vh;
+  background:linear-gradient(180deg,#17100d,#0a0706 60%);
+  border:1px solid rgba(201,162,75,.4); border-radius:6px; overflow:hidden;
+  transform:translateY(30px) scale(.98); transition:transform .45s var(--ease);
+}
+.char-modal.open .char-modal-panel{transform:translateY(0) scale(1);}
+.char-modal-scroll{max-height:92vh; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--gold) transparent;}
+.char-modal-close{
+  position:absolute; top:14px; right:16px; z-index:5; background:rgba(0,0,0,.4);
+  border:1px solid rgba(201,162,75,.4); color:var(--gold-bright); width:38px; height:38px;
+  border-radius:50%; font-size:22px; line-height:1;
+}
+.char-modal-nav{
+  position:absolute; top:50%; translate:0 -50%; z-index:5; background:rgba(0,0,0,.4);
+  border:1px solid rgba(201,162,75,.4); color:var(--gold-bright); width:40px; height:40px;
+  border-radius:50%; font-size:14px;
+}
+.char-modal-prev{left:14px;} .char-modal-next{right:14px;}
 
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <p class="footer-mark">रामायण</p>
-      <p class="footer-title">RAMAYANA</p>
-      <p class="footer-tagline">THE STORY THAT LIVES THROUGH ETERNITY</p>
-    </div>
-    <nav class="footer-links">
-      <a href="#home">Home</a>
-      <a href="#characters">Characters</a>
-      <a href="#about">About</a>
-      <a href="#partners">Partners</a>
-    </nav>
-  </div>
-  <div class="footer-credits">
-    <p>Directed by Nitesh Tiwari · Produced by Namit Malhotra · Prime Focus Studios</p>
-  </div>
-  <div class="footer-bottom">
-    <p>This is an independently created fan tribute website and is not officially affiliated with, endorsed by, or produced by the makers of Ramayana, Prime Focus Studios, DNEG, Monster Mind Creations, Sony Pictures or Dharma Productions. All character and cast information is drawn from publicly reported sources.</p>
-    <p>© 2026 — Fan tribute project. All rights to the film Ramayana belong to its respective owners.</p>
-  </div>
-</footer>
+.char-part{padding:48px clamp(20px,5vw,56px);}
+.char-portrait{
+  width:100%; aspect-ratio:16/9; border-radius:4px; overflow:hidden; margin-bottom:28px;
+  background:radial-gradient(circle at 50% 20%, rgba(224,137,44,.35), rgba(122,12,30,.3) 60%, rgba(10,7,6,.9));
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid rgba(201,162,75,.3);
+}
+.char-portrait .ph{font-family:var(--font-display-deco); font-size:54px; color:rgba(243,234,217,.9);}
+.char-kicker{font-size:11px; letter-spacing:.25em; text-transform:uppercase; color:var(--sandstone);}
+#modal-char-name{font-size:clamp(28px,4vw,42px); color:var(--gold-bright); margin:8px 0 6px;}
+.char-role{color:var(--ivory); font-size:16px; margin:0 0 28px; font-style:italic;}
+.char-detail-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:26px;}
+.char-detail-grid h4{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--saffron); margin-bottom:8px;}
+.char-detail-grid p{font-size:15px; color:rgba(243,234,217,.82); margin:0;}
 
-<script src="script.js"></script>
-</body>
-</html>
+.char-part-divider{
+  display:flex; align-items:center; gap:16px; padding:0 clamp(20px,5vw,56px);
+}
+.char-part-divider::before,.char-part-divider::after{content:""; flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(201,162,75,.5),transparent);}
+.char-part-divider span{
+  font-family:var(--font-display); font-size:11px; letter-spacing:.3em; color:var(--gold);
+  white-space:nowrap;
+}
+
+.char-part--actor{display:flex; gap:34px; flex-wrap:wrap; align-items:flex-start;}
+.actor-portrait{
+  flex:0 0 190px; width:190px; aspect-ratio:3/4; border-radius:4px; overflow:hidden;
+  background:linear-gradient(160deg, rgba(201,162,75,.25), rgba(10,7,6,.95));
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid rgba(201,162,75,.3);
+}
+.actor-portrait .ph{font-family:var(--font-display-deco); font-size:34px; color:rgba(243,234,217,.9);}
+.actor-info{flex:1; min-width:260px;}
+#modal-actor-name{font-size:24px; color:var(--ivory); margin-bottom:14px;}
+.actor-bio{color:rgba(243,234,217,.82); font-size:15.5px; margin:0 0 22px;}
+.actor-detail-grid{display:grid; gap:18px;}
+.actor-detail-grid h4{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--saffron); margin-bottom:6px;}
+.actor-detail-grid p{font-size:14.5px; color:rgba(243,234,217,.78); margin:0;}
+
+/* ===================================================================
+   WORLD
+=================================================================== */
+.world-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:28px;}
+.world-card{
+  position:relative; border-radius:4px; overflow:hidden; aspect-ratio:4/5;
+  border:1px solid rgba(201,162,75,.25);
+}
+.world-card-bg{
+  position:absolute; inset:0; transition:transform .7s var(--ease);
+}
+.world-card:hover .world-card-bg{transform:scale(1.08);}
+.world-card-overlay{
+  position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end;
+  padding:26px; background:linear-gradient(0deg, rgba(10,7,6,.95) 10%, rgba(10,7,6,.15) 65%, transparent 100%);
+}
+.world-card h3{font-size:22px; color:var(--gold-bright); margin-bottom:8px;}
+.world-card p{font-size:14.5px; color:rgba(243,234,217,.8); margin:0;}
+
+/* ===================================================================
+   ABOUT
+=================================================================== */
+.about-leads{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:26px; margin-bottom:60px;}
+.lead-card{
+  padding:30px 28px; border:1px solid rgba(201,162,75,.25); border-radius:4px;
+  background:rgba(243,234,217,.03);
+}
+.lead-card h3{font-size:19px; color:var(--gold-bright); margin-bottom:12px;}
+.lead-card p{font-size:15px; color:rgba(243,234,217,.8); margin:0;}
+
+.about-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:40px;}
+.about-block h4{font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--saffron); margin-bottom:16px;}
+.about-block ul li{
+  font-size:15px; color:rgba(243,234,217,.85); padding:9px 0; border-bottom:1px solid rgba(201,162,75,.12);
+}
+.about-note{margin-top:14px; font-size:13.5px; color:rgba(243,234,217,.6);}
+
+/* ===================================================================
+   PARTNERS
+=================================================================== */
+.partners-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:26px;}
+.partner-block{
+  padding:28px; border:1px solid rgba(201,162,75,.25); border-radius:4px; background:rgba(243,234,217,.03);
+}
+.partner-block h4{font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--saffron); margin-bottom:16px;}
+.partner-block ul li{font-size:15px; padding:6px 0; color:rgba(243,234,217,.85);}
+.partner-block--tba{border-style:dashed; background:transparent;}
+.partner-block--tba p{color:rgba(243,234,217,.55); font-style:italic; font-size:14.5px;}
+
+/* ===================================================================
+   FOOTER
+=================================================================== */
+.site-footer{
+  position:relative; z-index:2; border-top:1px solid rgba(201,162,75,.25);
+  padding:70px 24px 34px; background:linear-gradient(180deg, transparent, rgba(122,12,30,.12));
+}
+.footer-top{
+  max-width:1200px; margin:0 auto 40px; display:flex; flex-wrap:wrap; gap:30px;
+  justify-content:space-between; align-items:flex-end;
+}
+.footer-mark{font-family:var(--font-display-deco); font-size:22px; color:var(--gold); margin:0;}
+.footer-title{font-family:var(--font-display); font-size:26px; letter-spacing:.1em; color:var(--gold-bright); margin:4px 0;}
+.footer-tagline{font-size:11px; letter-spacing:.3em; color:var(--sandstone); text-transform:uppercase;}
+.footer-links{display:flex; gap:26px; flex-wrap:wrap;}
+.footer-links a{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:rgba(243,234,217,.75);}
+.footer-links a:hover{color:var(--gold-bright);}
+.footer-credits{max-width:1200px; margin:0 auto 28px; font-size:13.5px; color:rgba(243,234,217,.6); border-top:1px solid rgba(201,162,75,.12); padding-top:24px;}
+.footer-bottom{max-width:1200px; margin:0 auto; font-size:12px; color:rgba(243,234,217,.4); display:flex; flex-direction:column; gap:8px;}
+
+/* ===================================================================
+   REVEAL ANIMATIONS
+=================================================================== */
+.reveal-up{opacity:0; transform:translateY(26px); transition:opacity .9s var(--ease), transform .9s var(--ease);}
+.reveal-up.in-view{opacity:1; transform:translateY(0);}
+
+.reveal-letters{opacity:0; filter:blur(6px); transform:translateY(14px) scale(.98);
+  transition:opacity 1.3s var(--ease), filter 1.3s var(--ease), transform 1.3s var(--ease);}
+.reveal-letters.in-view{opacity:1; filter:blur(0); transform:translateY(0) scale(1);}
+
+/* ===================================================================
+   RESPONSIVE
+=================================================================== */
+@media (max-width:860px){
+  .nav-links{
+    position:fixed; top:68px; left:0; right:0; bottom:0;
+    background:rgba(10,7,6,.98); flex-direction:column; align-items:flex-start;
+    padding:40px 30px; gap:26px; transform:translateX(100%); transition:transform .4s var(--ease);
+  }
+  .nav-links.open{transform:translateX(0);}
+  .nav-links a{font-size:16px;}
+  #nav-toggle{display:flex;}
+  .hero-info-bar{grid-template-columns:repeat(2,auto); row-gap:20px; justify-content:center;}
+  .char-part--actor{flex-direction:column; align-items:center; text-align:left;}
+  .actor-portrait{flex:0 0 auto;}
+}
+
+@media (max-width:520px){
+  .section{padding:90px 18px;}
+  .hero-intro{font-size:15.5px;}
+}
