@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAMAYANA — The Story That Lives Through Eternity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-sigil">
+    <svg viewBox="0 0 120 120" width="90" height="90">
+      <circle cx="60" cy="60" r="50" class="loader-ring"/>
+      <circle cx="60" cy="60" r="34" class="loader-ring loader-ring--rev"/>
+      <text x="60" y="71" text-anchor="middle" class="loader-glyph">ॐ</text>
+    </svg>
+  </div>
+  <p class="loader-text">entering the age of dharma</p>
+</div>
+
+<!-- ============ PARTICLE / ATMOSPHERE CANVAS ============ -->
+<canvas id="atmosphere" aria-hidden="true"></canvas>
+
+<!-- ============ NAVIGATION ============ -->
+<header id="site-nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-brand">रामायण<span>RAMAYANA</span></a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#home" data-nav>Home</a>
+      <a href="#epic" data-nav>The Epic</a>
+      <a href="#characters" data-nav>Characters</a>
+      <a href="#world" data-nav>The World</a>
+      <a href="#about" data-nav>About</a>
+      <a href="#partners" data-nav>Partners</a>
+    </nav>
+    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="hero">
+  <div class="hero-bg">
+    <div class="hero-pillars" aria-hidden="true"></div>
+    <div class="hero-sun" aria-hidden="true"></div>
+    <div class="hero-clouds" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-kicker reveal-up">a Namit Malhotra &amp; Nitesh Tiwari motion picture</p>
+    <h1 class="hero-title">
+      <span class="hero-title-line reveal-letters">RAMAYANA</span>
+    </h1>
+    <p class="hero-tagline reveal-up">THE STORY THAT LIVES THROUGH ETERNITY</p>
+    <p class="hero-intro reveal-up">
+      A two-part cinematic retelling of Maharishi Valmiki's epic — the journey of Prince Rama of Ayodhya,
+      his wife Sita, and his brother Lakshmana, through exile, devotion and the eternal struggle between
+      dharma and adharma. Directed by Nitesh Tiwari. Produced by Namit Malhotra.
+    </p>
+    <div class="hero-actions reveal-up">
+      <a href="#epic" class="btn btn-primary">Explore the Epic</a>
+      <a href="#characters" class="btn btn-ghost">Meet the Characters</a>
+    </div>
+  </div>
+
+  <div class="hero-info-bar reveal-up">
+    <div><span>Director</span>Nitesh Tiwari</div>
+    <div><span>Producer</span>Namit Malhotra</div>
+    <div><span>Part One</span>November 6, 2026</div>
+    <div><span>Part Two</span>Diwali 2027</div>
+  </div>
+
+  <a href="#epic" class="scroll-cue" aria-label="Scroll to explore">
+    <span></span>
+  </a>
+</section>
+
+<!-- ============ THE EPIC ============ -->
+<section id="epic" class="section epic-section">
+  <div class="section-head reveal-up">
+    <h2>The Epic</h2>
+    <p class="section-sub">
+      The Ramayana is one of the two great Sanskrit epics of ancient India, traditionally attributed to
+      Maharishi Valmiki. What follows is the traditional narrative arc of the epic. Events marked
+      <span class="tag tag-part1">Part One</span> are confirmed to appear in Nitesh Tiwari's
+      <em>Ramayana: Part One</em>; the rest belong to the wider epic and may be depicted in Part Two or not
+      filmed at all. Nothing here is invented dialogue or scene detail.
+    </p>
+  </div>
+
+  <ol class="timeline">
+    <li class="timeline-item reveal-up" data-part="1">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <span class="tag tag-part1">Part One</span>
+        <h3>The Kingdom of Ayodhya</h3>
+        <p>King Dasharatha of Ayodhya, childless for years, performs the Putrakameshti yagna. Rama is
+        born to Queen Kaushalya, with Bharata, Lakshmana and Shatrughna born soon after to Kaikeyi and
+        Sumitra.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up" data-part="1">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <span class="tag tag-part1">Part One</span>
+        <h3>Childhood &amp; Training</h3>
+        <p>The four princes are raised and trained in Ayodhya under the guidance of Sage Vashishtha,
+        learning statecraft, scripture and the arts of war.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up" data-part="1">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <span class="tag tag-part1">Part One</span>
+        <h3>Sage Vishwamitra's Call</h3>
+        <p>Sage Vishwamitra arrives at Ayodhya asking for Rama's protection against demons harassing his
+        hermitage. Rama and Lakshmana leave with him, beginning their first trials.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up" data-part="1">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <span class="tag tag-part1">Part One</span>
+        <h3>Mithila &amp; the Swayamvara</h3>
+        <p>In Mithila, Rama meets Sita, daughter of King Janaka, and wins her hand by stringing and
+        breaking the divine bow of Shiva at her swayamvara.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up" data-part="1">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <span class="tag tag-part1">Part One</span>
+        <h3>Kaikeyi's Two Boons</h3>
+        <p>On the eve of Rama's coronation, Manthara persuades Kaikeyi to claim two boons once promised by
+        Dasharatha: Bharata's coronation, and Rama's exile for fourteen years.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up" data-part="1">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <span class="tag tag-part1">Part One</span>
+        <h3>The Fourteen-Year Exile</h3>
+        <p>Rama accepts the exile without protest. Sita and Lakshmana insist on accompanying him, and the
+        three leave Ayodhya's comforts for the forest.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <h3>Life in the Forest</h3>
+        <p>The three live an austere life moving between hermitages, eventually settling at Panchavati in
+        the Dandaka forest, encountering sages and forest-dwellers along the way.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <h3>Surpanakha's Encounter</h3>
+        <p>Ravana's sister Surpanakha approaches Rama and is rebuffed; in the confrontation that follows,
+        Lakshmana wounds her, and she flees to Lanka seeking revenge.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <h3>The Golden Deer</h3>
+        <p>Ravana sends the demon Maricha, disguised as a golden deer, to lure Rama away from the
+        hermitage, drawing Lakshmana away as well and leaving Sita alone.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <h3>Sita's Abduction</h3>
+        <p>Disguised as a mendicant, Ravana abducts Sita and carries her to Lanka. The vulture Jatayu
+        intervenes to protect her and is mortally wounded by Ravana.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <h3>The Search Begins</h3>
+        <p>Rama and Lakshmana search the forests for Sita, meeting the dying Jatayu, and eventually
+        forming an alliance with Sugriva, the exiled king of the vanaras of Kishkindha.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <h3>Hanuman's Devotion</h3>
+        <p>Hanuman, minister to Sugriva, becomes Rama's most devoted follower. He leaps across the ocean
+        to Lanka, finds Sita in captivity, and returns with news of her.</p>
+      </div>
+    </li>
+    <li class="timeline-item reveal-up">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <h3>The War in Lanka</h3>
+        <p>The vanara army builds a bridge to Lanka. After a prolonged war, Rama confronts and defeats
+        Ravana, securing the triumph of dharma over adharma.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ CHARACTERS ============ -->
+<section id="characters" class="section characters-section">
+  <div class="section-head reveal-up">
+    <h2>The Character Universe</h2>
+    <p class="section-sub">Every figure of the epic, and the artist who brings them to the screen.</p>
+  </div>
+
+  <div class="char-controls reveal-up">
+    <div class="char-filters" role="tablist" aria-label="Filter characters by realm">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ayodhya">Ayodhya</button>
+      <button class="filter-btn" data-filter="mithila">Mithila</button>
+      <button class="filter-btn" data-filter="lanka">Lanka</button>
+      <button class="filter-btn" data-filter="divine">Divine &amp; Vanara</button>
+    </div>
+    <div class="char-search">
+      <input type="search" id="char-search-input" placeholder="Search characters…" aria-label="Search characters">
+    </div>
+  </div>
+
+  <h3 class="char-subheading reveal-up">Main Characters</h3>
+  <div class="char-grid char-grid--main" id="char-grid-main"></div>
+
+  <h3 class="char-subheading reveal-up">Supporting Characters</h3>
+  <div class="char-grid char-grid--support" id="char-grid-support"></div>
+</section>
+
+<!-- ============ CHARACTER PROFILE MODAL ============ -->
+<div id="char-modal" class="char-modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="char-modal-backdrop" data-close></div>
+  <div class="char-modal-panel">
+    <button class="char-modal-close" data-close aria-label="Close profile">&times;</button>
+    <button class="char-modal-nav char-modal-prev" id="char-prev" aria-label="Previous character">&#10094;</button>
+    <button class="char-modal-nav char-modal-next" id="char-next" aria-label="Next character">&#10095;</button>
+
+    <div class="char-modal-scroll">
+      <!-- PART A: CHARACTER -->
+      <section class="char-part char-part--character">
+        <div class="char-portrait" id="modal-char-portrait"></div>
+        <div class="char-info">
+          <span class="char-kicker" id="modal-char-realm"></span>
+          <h2 id="modal-char-name"></h2>
+          <p class="char-role" id="modal-char-role"></p>
+          <div class="char-detail-grid">
+            <div><h4>Background</h4><p id="modal-char-background"></p></div>
+            <div><h4>Personality</h4><p id="modal-char-personality"></p></div>
+            <div><h4>Family</h4><p id="modal-char-family"></p></div>
+            <div id="modal-char-powers-wrap"><h4>Powers &amp; Abilities</h4><p id="modal-char-powers"></p></div>
+            <div><h4>Importance to the Story</h4><p id="modal-char-importance"></p></div>
+            <div><h4>Relationships</h4><p id="modal-char-relationships"></p></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="char-part-divider">
+        <span>PORTRAYED BY</span>
+      </div>
+
+      <!-- PART B: ACTOR -->
+      <section class="char-part char-part--actor">
+        <div class="actor-portrait" id="modal-actor-portrait"></div>
+        <div class="actor-info">
+          <h3 id="modal-actor-name"></h3>
+          <p class="actor-bio" id="modal-actor-bio"></p>
+          <div class="actor-detail-grid">
+            <div><h4>Notable Films</h4><p id="modal-actor-films"></p></div>
+            <div id="modal-actor-awards-wrap"><h4>Recognition</h4><p id="modal-actor-awards"></p></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ============ THE WORLD ============ -->
+<section id="world" class="section world-section">
+  <div class="section-head reveal-up">
+    <h2>The World of Ramayana</h2>
+    <p class="section-sub">The kingdoms and wilds through which the epic moves.</p>
+  </div>
+  <div class="world-grid" id="world-grid"></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="section about-section">
+  <div class="section-head reveal-up">
+    <h2>About the Film</h2>
+    <p class="section-sub">
+      <strong>Ramayana</strong> is a two-part Hindi-language mythological epic directed by Nitesh Tiwari
+      and produced by Namit Malhotra. Part One released worldwide on November 6, 2026; Part Two is
+      slated for Diwali 2027.
+    </p>
+  </div>
+
+  <div class="about-leads reveal-up">
+    <article class="lead-card">
+      <h3>Nitesh Tiwari — Director</h3>
+      <p>An Indian filmmaker best known for directing <em>Dangal</em> (2016) and <em>Chhichhore</em>
+      (2019). He co-wrote Ramayana's screenplay and directs both parts of the adaptation.</p>
+    </article>
+    <article class="lead-card">
+      <h3>Namit Malhotra — Producer</h3>
+      <p>Indian entrepreneur and founder of Prime Focus, and chairman and group chief executive of
+      DNEG. Ramayana is produced through Prime Focus Studios, bringing together global VFX
+      infrastructure for the production.</p>
+    </article>
+    <article class="lead-card">
+      <h3>Yash — Co-Producer &amp; Actor</h3>
+      <p>Indian actor known for the <em>K.G.F.</em> film series, who plays Ravana and co-produces the
+      film through his banner, Monster Mind Creations.</p>
+    </article>
+  </div>
+
+  <div class="about-grid reveal-up">
+    <div class="about-block">
+      <h4>Production Companies</h4>
+      <ul><li>Prime Focus Studios</li><li>Monster Mind Creations</li><li>DNEG (VFX &amp; production partner)</li></ul>
+    </div>
+    <div class="about-block">
+      <h4>Distribution</h4>
+      <ul><li>Sony Pictures</li><li>Dharma Productions</li></ul>
+    </div>
+    <div class="about-block">
+      <h4>Music</h4>
+      <ul><li>Hans Zimmer</li><li>A. R. Rahman</li></ul>
+      <p class="about-note">Both composers have contributed to the film's score, pairing an
+      internationally renowned cinematic composer with one of India's most celebrated musicians.</p>
+    </div>
+    <div class="about-block">
+      <h4>Creative Team</h4>
+      <ul>
+        <li>Shridhar Raghavan — Screenplay</li>
+        <li>Shreyas Jain — Dialogues</li>
+        <li>Pankaj Kumar — Cinematography</li>
+        <li>Mahesh Limaye — Cinematography</li>
+        <li>Huzefa Lokhandwala — Editing</li>
+        <li>Ravi Bansal — Production Design</li>
+        <li>Ramsey Avery — Production Design</li>
+        <li>Terry Notary &amp; Guy Norris — Action Choreography</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section id="partners" class="section partners-section">
+  <div class="section-head reveal-up">
+    <h2>Partners &amp; Supporters</h2>
+    <p class="section-sub">A clear distinction between the organisations behind the film.</p>
+  </div>
+
+  <div class="partners-grid reveal-up">
+    <div class="partner-block">
+      <h4>Production</h4>
+      <ul><li>Prime Focus Studios</li><li>Monster Mind Creations</li></ul>
+    </div>
+    <div class="partner-block">
+      <h4>Visual Effects</h4>
+      <ul><li>DNEG</li></ul>
+    </div>
+    <div class="partner-block">
+      <h4>Distribution</h4>
+      <ul><li>Sony Pictures</li><li>Dharma Productions</li></ul>
+    </div>
+    <div class="partner-block partner-block--tba">
+      <h4>Official Commercial Sponsors</h4>
+      <p>Official commercial sponsors to be announced.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <p class="footer-mark">रामायण</p>
+      <p class="footer-title">RAMAYANA</p>
+      <p class="footer-tagline">THE STORY THAT LIVES THROUGH ETERNITY</p>
+    </div>
+    <nav class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#characters">Characters</a>
+      <a href="#about">About</a>
+      <a href="#partners">Partners</a>
+    </nav>
+  </div>
+  <div class="footer-credits">
+    <p>Directed by Nitesh Tiwari · Produced by Namit Malhotra · Prime Focus Studios</p>
+  </div>
+  <div class="footer-bottom">
+    <p>This is an independently created fan tribute website and is not officially affiliated with, endorsed by, or produced by the makers of Ramayana, Prime Focus Studios, DNEG, Monster Mind Creations, Sony Pictures or Dharma Productions. All character and cast information is drawn from publicly reported sources.</p>
+    <p>© 2026 — Fan tribute project. All rights to the film Ramayana belong to its respective owners.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
