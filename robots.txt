@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+Sitemap: https://time12.xin/sitemap.xml
