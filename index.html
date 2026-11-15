@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="tractionbooster-site-verification" content="tb_verify_977ef7266ae7489dc438fe3fec2b3a86">
+<title>Time12 — Task and submission tracking for classes and teams</title>
+<meta name="description" content="Time12 is a task and submission tracker for teachers, managers, students and employees. Assign work to a group, collect text, links and files, verify or reject each submission, and see who is done, late or missing.">
+<meta property="og:title" content="Time12 — Make Time True">
+<meta property="og:description" content="Assign tasks to a class or team, collect submissions, verify them and see who is actually done.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://time12.xin/taiwan.png">
+<meta property="og:url" content="https://time12.xin/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Time12","applicationCategory":"ProductivityApplication","operatingSystem":"Web","description":"Task and submission tracking for classes and teams. Assign tasks to groups, collect text, links and files, verify or reject submissions, and read completion analytics.","url":"https://time12.xin/","image":"https://time12.xin/taiwan.png","audience":{"@type":"Audience","audienceType":"Teachers, managers, students and employees"},"featureList":["Groups, sub-groups and group admins","Tasks with an exact due time, for a whole group or specific people","Submissions with text, links and files up to 25 MB","Verify or reject with a reason, every attempt kept","AI-marked tasks against your own checklist","Analytics from 1D to ALL, with history and Excel export","CSV and Excel bulk account import","Offline-first notes with sync and export","Papers, Rewards and a public Leaderboard","Index: a private streak to-do","Focus toolbox with timers, YouTube and chess","Command palette and keyboard shortcuts","Light and dark themes"]}
+</script>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('Time12-theme')}catch(e){}
+if(t!=='light'&&t!=='dark')t='light';
+document.documentElement.setAttribute('data-theme',t);})();
+</script>
+<link id="favicon" rel="icon" type="image/png" href="taiwan.png?v=1790864213">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Covered+By+Your+Grace&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{color-scheme:light;
+--bg:#FFFFFF;--card:#FFFFFF;--soft-bg:#F7F3EE;--surface-2:#EFE9E1;--ink:#18120E;--soft:#4A4036;--mute:#7A6F63;--line:#E5DDD3;
+--acc:#FD7E14;--acc-soft:#FFF4E5;--molding:#1A1A1A;--ok:#5F7A3A;--warn:#B08832;--bad:#A23B2A;
+--shadow:rgba(24,18,14,.28);--serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+:root[data-theme="dark"]{color-scheme:dark;
+--bg:#000000;--card:#0F0F0F;--soft-bg:#0A0A0A;--surface-2:#1A1A1A;--ink:#F5F5F5;--soft:#B5B5B5;--mute:#8A8A8A;--line:#242424;
+--acc-soft:#3A1F0A;--molding:#FF8A33;--ok:#7AB560;--warn:#FFA45C;--bad:#D97060;--shadow:rgba(0,0,0,.8)}
+body,nav,.win,.dlg,.band,.card{transition:background-color .3s,border-color .3s,color .3s}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px var(--sans);padding:12px 22px;border-radius:999px;background:var(--acc);color:#18120E;border:1px solid var(--acc);transition:transform .15s,box-shadow .15s;cursor:pointer}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(253,126,20,.35)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{box-shadow:none;border-color:var(--ink)}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font:400 24px var(--serif)}
+.logo img{width:30px;height:30px;object-fit:contain;display:block}
+.logo .fb{display:none}
+.logo.nologo img{display:none}.logo.nologo .fb{display:block}
+.right{display:flex;align-items:center;gap:10px}
+.tog{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:border-color .15s,transform .15s}
+.tog:hover{border-color:var(--ink);transform:rotate(-12deg)}
+.tog svg{width:18px;height:18px}
+.tog .moon{display:none}
+:root[data-theme="dark"] .tog .sun{display:none}
+:root[data-theme="dark"] .tog .moon{display:block}
+.links{display:flex;gap:26px;font-size:14px;color:var(--soft)}
+.links a:hover{color:var(--ink)}
+nav .btn{padding:8px 18px;font-size:14px}
+/* hero */
+.hero{padding:64px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.18fr;gap:48px;align-items:start}
+h1{font:400 clamp(40px,5.4vw,66px)/1.04 var(--serif);letter-spacing:-.02em}
+.lead{margin:20px 0 26px;font-size:18px;color:var(--soft);max-width:480px}
+.lead b{color:var(--ink);font-weight:600}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.aud{margin-top:30px;display:grid;gap:0;border-top:1px solid var(--line);max-width:480px}
+.aud div{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--soft)}
+.aud b{color:var(--ink);font-weight:600}
+.cap{margin-top:12px;font-size:13px;color:var(--mute)}
+/* ---------- faithful app window ---------- */
+.win{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 60px -30px var(--shadow);overflow:hidden;text-align:left}
+.wbar{display:flex;align-items:center;gap:6px;padding:11px 16px;border-bottom:1px solid var(--line);background:var(--soft-bg)}
+.wbar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.wbar span{margin-left:12px;font-size:11.5px;color:var(--mute);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:2px 14px}
+.wbody{overflow-x:auto}
+.app{min-width:560px;padding:14px 20px 22px}
+.top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-bottom:22px}
+.top .l{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--mute)}
+.top .l i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.top .r{display:flex;justify-content:flex-end;gap:8px}
+.pill{display:flex;gap:4px;padding:5px;border:1px solid var(--line);border-radius:999px;background:var(--soft-bg)}
+.pill span{padding:5px 14px;border-radius:999px;font-size:12.5px;font-weight:500;color:var(--mute);white-space:nowrap}
+.pill .on{background:var(--card);color:var(--ink);font-weight:600;box-shadow:0 1px 6px rgba(0,0,0,.12)}
+.ab{font:600 12px var(--sans);padding:6px 14px;border:1px solid var(--line);border-radius:4px;background:transparent;color:var(--ink);white-space:nowrap}
+.ab.p{background:var(--acc);border-color:var(--acc);color:#18120E}
+.ab.d:hover{color:var(--bad)}
+.mt{font:400 30px/1.2 var(--serif);letter-spacing:-.02em}
+.mm{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.1em;margin:4px 0 20px;padding-bottom:12px;border-bottom:2px solid var(--molding)}
+.mm u{width:3px;height:3px;border-radius:50%;background:var(--mute);display:inline-block}
+.lab{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--mute)}
+.tbl{border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:12.5px}
+.th,.tr{display:grid;grid-template-columns:minmax(0,1fr) 92px 112px;gap:14px;padding:12px 14px;align-items:start}
+.th{background:var(--soft-bg);border-bottom:1px solid var(--line)}
+.tr+.tr{border-top:1px solid var(--line)}
+.tr strong{font-size:14px}
+.tr .desc{color:var(--mute);margin-top:3px}
+.ref{margin-top:8px;font-size:12px;color:var(--soft)}
+.ref a{color:var(--acc);display:flex;align-items:center;gap:5px;margin-top:2px}
+.ref svg{width:12px;height:12px}
+.prog{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.mp{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:4px 0;font-size:12.5px;min-height:30px}
+.mp b{font-weight:600}
+.st{font-size:10.5px;font-weight:600;text-transform:capitalize;margin-left:6px;transition:color .3s}
+.st.not_started{color:var(--mute)}.st.pending{color:var(--warn)}.st.completed{color:var(--ok)}.st.rejected{color:var(--bad)}
+.acts{display:flex;gap:6px;flex:none;min-height:24px}
+.rb{font:600 11px var(--sans);padding:3px 10px;border:1px solid var(--line);border-radius:4px;color:var(--ink);white-space:nowrap}
+.rb.d{color:var(--bad)}
+.more{margin-top:4px;font:600 11.5px var(--sans);color:var(--acc);background:none;border:0;padding:0}
+.od{color:var(--bad)}
+.sub{padding:8px 10px;margin:3px 0 4px;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;font-size:11.5px;color:var(--soft)}
+.sub a{display:flex;align-items:center;gap:5px;color:var(--acc);margin-top:3px}
+.sub svg{width:11px;height:11px}
+/* groups */
+.gc{border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:10px;background:var(--card)}
+.gh{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.gn{font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:8px}
+.gid{font:500 10px ui-monospace,Menlo,monospace;color:var(--mute);background:var(--surface-2);padding:1px 6px;border-radius:3px}
+.ga{display:flex;gap:6px}
+.mem{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.mem span{font-size:12px;padding:3px 8px;background:var(--surface-2);border-radius:4px;display:inline-flex;align-items:center;gap:6px}
+.mem em{font-style:normal;color:var(--mute)}
+.nest{margin-left:22px;border-left:2px solid var(--line);padding-left:12px}
+.chk{width:13px;height:13px;border:1.5px solid var(--mute);border-radius:3px;display:inline-block;vertical-align:-2px}
+.chk.on{background:var(--acc);border-color:var(--acc)}
+.selbar{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--soft);padding:8px 14px;background:var(--acc-soft);border-top:1px solid var(--line)}
+.tr.acc{grid-template-columns:24px 1fr auto;align-items:center;padding:8px 14px}
+/* task cards */
+.gcard{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:16px}
+.gcard .gt{display:flex;justify-content:space-between;font-size:14px;font-weight:600}
+.gcard .gt small{font-weight:400;font-size:11px;color:var(--mute)}
+.gcard svg{width:100%;height:70px;display:block;margin-top:8px}
+.ga-area{fill:var(--acc);opacity:.14}.ga-line{fill:none;stroke:var(--acc);stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.ga-grid line{stroke:var(--line);stroke-width:.5;vector-effect:non-scaling-stroke}
+.tc{border:1px solid var(--line);border-top:3px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:14px}
+.tc.pending{border-top-color:var(--warn)}.tc.completed{border-top-color:var(--ok)}.tc.rejected{border-top-color:var(--bad)}.tc.overdue{border-top-color:var(--bad)}
+.tch{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.tct{font-weight:600;font-size:15px}
+.tcm{font-size:11.5px;color:var(--mute);margin-top:2px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;background:var(--surface-2);color:var(--mute)}
+.badge:before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge.pending{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.badge.completed,.badge.done{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.badge.rejected,.badge.overdue,.badge.missed{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+.badge.late{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.badge.review{background:var(--acc-soft);color:var(--acc)}
+.badge.n{text-transform:none;letter-spacing:0;font-size:11px}
+.tcd{margin-top:8px;font-size:12.5px;color:var(--soft)}
+.rev{margin-top:10px;padding:9px 11px;background:var(--surface-2);border-radius:4px;font-size:12px;color:var(--soft)}
+.rev b{display:block;margin-bottom:3px;font-size:10px;letter-spacing:.08em;color:var(--acc)}
+.tcl{margin-top:10px;font-size:12px}
+.tcl a{display:flex;align-items:center;gap:5px;color:var(--acc);margin-top:2px}
+.tcl svg{width:12px;height:12px}
+.tcf{margin-top:12px;text-align:right}
+.closed{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--bad)}
+/* dialogs */
+.dlg{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;box-shadow:0 30px 60px -30px var(--shadow);font-size:13px;max-width:460px;width:100%}
+.dlg.fade{-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
+.dt{font:400 24px/1.2 var(--serif)}
+.dx{color:var(--mute);margin:4px 0 14px;font-size:12.5px}
+.f2{margin-bottom:12px}
+.f2 label{display:block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--mute);margin-bottom:5px}
+.f2 label i{font-style:normal;text-transform:none;letter-spacing:0;opacity:.8}
+.in{border:1px solid var(--line);border-radius:4px;padding:7px 10px;font-size:12.5px;color:var(--mute);background:var(--bg);display:flex;justify-content:space-between;align-items:center;min-height:32px}
+.in.v{color:var(--ink)}
+.two{display:grid;grid-template-columns:2fr 1fr;gap:8px;margin-bottom:6px}
+.drop{border:1.5px dashed var(--line);border-radius:6px;text-align:center;padding:14px 10px;color:var(--soft);font-size:12px}
+.drop small{display:block;color:var(--mute);margin-top:3px;font-size:11px}
+.drop svg{width:20px;height:20px;margin-bottom:4px;color:var(--mute)}
+.da{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.tg{display:flex;gap:4px;padding:3px;background:var(--surface-2);border-radius:6px;margin-bottom:12px}
+.tg span{flex:1;text-align:center;padding:6px;font-size:12px;font-weight:600;border-radius:4px;color:var(--mute)}
+.tg .on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.fmt{font-size:11.5px;color:var(--mute);line-height:1.65;background:var(--surface-2);border-radius:4px;padding:9px 11px}
+.fmt b{color:var(--soft)}
+.mono{font:500 11.5px/1.6 ui-monospace,Menlo,monospace}
+code{font:500 12px ui-monospace,Menlo,monospace;background:var(--surface-2);padding:1px 6px;border-radius:4px}
+.csvx{margin-top:8px;background:var(--surface-2);border-radius:4px;padding:8px 10px;color:var(--soft)}
+.ai{margin-top:12px;background:var(--surface-2);border-radius:4px;padding:9px 11px;font-size:12px;font-weight:600;color:var(--soft)}
+/* notes mock */
+.notes{display:grid;grid-template-columns:190px 1fr;min-height:340px}
+.side{border-right:1px solid var(--line);padding:16px 14px;display:flex;flex-direction:column;gap:12px;background:var(--soft-bg)}
+.brand{display:flex;align-items:center;gap:8px;font:400 18px var(--serif)}
+.brand svg{width:20px;height:20px}
+.srch{border:1px solid var(--line);border-radius:4px;padding:6px 9px;font-size:12px;color:var(--mute);background:var(--bg)}
+.nl{display:flex;flex-direction:column;gap:2px;flex:1}
+.nl div{padding:7px 9px;border-radius:4px;font-size:12.5px}
+.nl div small{display:block;color:var(--mute);font-size:10.5px}
+.nl .on{background:var(--acc-soft)}
+.sf{font-size:11px;color:var(--mute);display:flex;flex-direction:column;gap:5px;border-top:1px solid var(--line);padding-top:10px}
+.sf div{display:flex;justify-content:space-between}
+.sf i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:6px}
+.ed{padding:20px 24px;display:flex;flex-direction:column}
+.edt{font:400 28px/1.2 var(--serif)}
+.edm{font-size:11px;color:var(--mute);margin:4px 0 14px}
+.edb{font-size:13.5px;color:var(--soft);line-height:1.75;flex:1}
+.edb p+p{margin-top:6px}
+.tb{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px;margin-top:12px}
+.tbg{display:flex;gap:2px}
+.tbg span{min-width:26px;height:26px;border-radius:4px;display:grid;place-items:center;font-size:12px;font-weight:600;border:1px solid transparent}
+.tbg span+span{margin-left:0}
+.tbs{width:1px;height:16px;background:var(--line);margin:0 6px}
+.cnt{font-size:11px;color:var(--mute)}
+.cnt b{color:var(--ink)}
+/* palette */
+.pal{max-width:480px;border:1px solid var(--line);border-radius:10px;background:var(--card);box-shadow:0 30px 60px -30px var(--shadow);overflow:hidden;width:100%}
+.pi{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px;color:var(--mute)}
+.pi svg{width:16px;height:16px}
+.ps{padding:8px 14px 4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--mute)}
+.pit{display:flex;align-items:center;gap:10px;padding:8px 14px;font-size:13px}
+.pit svg{width:15px;height:15px;color:var(--mute)}
+.pit span{margin-left:auto;font:500 11px ui-monospace,Menlo,monospace;color:var(--mute)}
+.pit.sel{background:var(--acc-soft)}
+.pit.sel svg{color:var(--acc)}
+.ks{margin-top:14px;border:1px solid var(--line);border-radius:10px;padding:14px 16px;max-width:480px;background:var(--card)}
+.ks div{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:13px;border-bottom:1px solid var(--line)}
+.ks div:last-child{border:0}
+.key{display:inline-block;min-width:24px;text-align:center;padding:1px 7px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;font:500 11px ui-monospace,Menlo,monospace;margin-left:4px;background:var(--soft-bg)}
+/* analytics */
+.an-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.an-name{font:400 24px/1.2 var(--serif)}
+.an-s{font-size:12px;color:var(--mute);margin-top:2px}
+.an-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.an-tools .in{flex:1;min-width:200px}
+.seg{display:flex;gap:4px}
+.seg span{font-size:11.5px;font-weight:600;padding:5px 11px;border:1px solid var(--line);border-radius:999px;color:var(--mute)}
+.seg .on{background:var(--acc-soft);color:var(--ink);border-color:var(--acc)}
+.stats{display:grid;grid-template-columns:1.5fr repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:14px 0 12px}
+.stat{background:var(--bg);padding:12px 14px}
+.stat b{display:block;font:400 26px/1 var(--serif)}
+.stat b small{font:400 11px var(--sans);color:var(--mute);margin-left:4px}
+.stat b.bad{color:var(--bad)}
+.stat span{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:11.5px;color:var(--mute)}
+.stat span i{width:7px;height:7px;border-radius:50%}
+.sg{display:flex;height:9px;border-radius:999px;overflow:hidden;background:var(--surface-2);margin-bottom:22px}
+.sg.s{height:6px;min-width:70px;flex:0 0 90px;margin:0}
+.sg i{display:block;height:100%}
+.trh{font:400 17px var(--serif);margin-bottom:8px}
+.trend{display:flex;align-items:stretch;gap:4px;height:84px}
+.trend .w{flex:1;display:flex;flex-direction:column;border-radius:3px;overflow:hidden}
+.trend .w i{display:block;min-height:2px}
+.trend .w.e{height:8%;align-self:flex-end;background:var(--surface-2)}
+.trl{display:flex;gap:4px;margin-top:6px;font-size:10px;color:var(--mute)}
+.trl span{flex:1;white-space:nowrap}
+.sec2{margin-top:24px}
+.sect{font:400 17px var(--serif);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sect small{font:600 11px var(--sans);color:var(--mute);background:var(--surface-2);padding:1px 8px;border-radius:999px}
+.rw{display:flex;align-items:center;gap:14px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;margin-bottom:6px;font-size:13px}
+.rw .m{flex:1;min-width:0}
+.rw .m b{font-weight:600}
+.rw .m small{display:block;font-size:11.5px;color:var(--mute)}
+.rw .m small .bad{color:var(--bad)}
+.rw .pc{font-weight:600;font-size:12.5px;min-width:36px;text-align:right}
+.rw .ch{width:14px;height:14px;color:var(--mute)}
+.org{color:var(--mute);font-weight:400}
+.two-up{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.an-top{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.ringw{position:relative;width:118px;height:118px;flex:none}
+.ringw svg{width:100%;height:100%}
+.ringw b{position:absolute;inset:0;display:grid;place-content:center;text-align:center;font:400 28px/1 var(--serif)}
+.ringw b small{display:block;font:500 10px var(--sans);color:var(--mute);margin-top:3px}
+.pt{width:100%;border-collapse:collapse;font-size:12px}
+.pt th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);padding:7px 8px;background:var(--soft-bg);border-bottom:1px solid var(--line)}
+.pt td{padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.pt td:first-child{color:var(--acc);font-weight:500}
+/* sections */
+.sec{padding:84px 0}
+.sec.tint{background:var(--soft-bg);border-block:1px solid var(--line)}
+h2{font:400 clamp(30px,4vw,46px)/1.1 var(--serif);letter-spacing:-.015em;max-width:700px}
+.subh{color:var(--soft);font-size:17px;margin-top:14px;max-width:620px}
+.said{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.said span{padding:10px 18px;border-radius:18px 18px 18px 4px;background:var(--card);border:1px solid var(--line);font-size:16px;color:var(--mute)}
+.said span:nth-child(2){margin-left:28px;opacity:.75}
+.said span:nth-child(3){margin-left:56px;opacity:.5}
+.ask{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.who3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;border-top:1px solid var(--line)}
+.who3>div{padding:28px 28px 0 0}
+.who3>div+div{padding-left:28px;border-left:1px solid var(--line)}
+.who3 h3{font:400 28px/1.15 var(--serif);margin-bottom:4px}
+.who3 .role{font-size:13.5px;color:var(--mute);margin-bottom:14px}
+.who3 p{font-size:15px;color:var(--soft)}
+.who3 ul{list-style:none;margin-top:14px;display:grid;gap:9px}
+.who3 li{font-size:14.5px;color:var(--soft);display:flex;gap:10px}
+.who3 li:before{content:'';flex:none;width:6px;height:6px;border-radius:50%;background:var(--acc);margin-top:9px}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);margin-top:44px;border-top:1px solid var(--line)}
+.step{padding:26px 22px 0 0}
+.step+.step{padding-left:22px;border-left:1px solid var(--line)}
+.step b{font:400 38px/1 var(--serif);color:var(--acc)}
+.step h3{margin:12px 0 6px;font-size:17px}
+.step p{color:var(--soft);font-size:14.5px}
+.life{margin-top:40px;border:1px solid var(--line);border-radius:14px;padding:22px 26px;background:var(--card);display:flex;flex-wrap:wrap;gap:14px 18px;align-items:center}
+.life .ar{width:18px;height:18px;color:var(--mute)}
+.life p{flex-basis:100%;font-size:14px;color:var(--soft)}
+.life .row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.life .tag{font-size:12px;color:var(--mute)}
+.tour{display:grid;grid-template-columns:.78fr 1.22fr;gap:52px;align-items:center;margin-top:84px}
+.tour.flip{grid-template-columns:1.22fr .78fr}
+.tour.flip .tx{order:2}
+.tx h3{font:400 clamp(26px,3vw,34px)/1.12 var(--serif);letter-spacing:-.01em}
+.tx>p{margin-top:12px;color:var(--soft);font-size:16px}
+.tx ul{list-style:none;margin-top:16px;border-top:1px solid var(--line)}
+.tx li{padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--soft)}
+.tx li b{color:var(--ink);font-weight:600}
+.tour.full{grid-template-columns:1fr;gap:28px}
+.tour.full .tx{max-width:700px}
+.stage{display:flex;justify-content:center}
+.stage .win,.stage .dlg{width:100%}
+.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.card h3{font-size:17px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.card p{color:var(--soft);font-size:14.5px}
+.card .ic{width:34px;height:34px;border-radius:9px;background:var(--acc-soft);color:var(--acc);display:grid;place-items:center;flex:none}
+.card .ic svg{width:18px;height:18px}
+.card.wide{grid-column:span 2}
+.dev{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.dev div{border:1px solid var(--line);border-radius:8px;padding:14px;text-align:center;font-size:12.5px;color:var(--mute)}
+.dev div:first-child{border-color:var(--acc);background:var(--acc-soft)}
+.dev b{display:block;color:var(--ink);font-size:13.5px;margin:6px 0 2px}
+.dev svg{width:24px;height:24px;color:var(--acc)}
+.dev div:last-child svg{color:var(--mute)}
+.pitch{margin-top:20px;font:600 14px var(--sans);color:var(--soft)}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:'+';font:400 24px/1 var(--serif);color:var(--acc)}
+details[open] summary:after{content:'–'}
+details p{margin-top:10px;color:var(--soft);font-size:15.5px;max-width:700px}
+.faq{max-width:760px;margin-top:36px}
+.final{padding:0 0 88px}
+.band{background:var(--soft-bg);border:1px solid var(--line);border-radius:22px;padding:64px 48px;text-align:center}
+.band h2{margin:0 auto}
+.band p{margin:14px auto 28px;color:var(--soft);max-width:520px}
+footer{border-top:1px solid var(--line);padding:32px 0;font-size:13.5px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:940px){
+.links{display:none}
+.hero .wrap>div:first-child{order:0}.hero .wrap>.hp{order:1;border-top:0;padding-top:0}.hero .wrap>div:nth-child(2){order:2}
+.hero .wrap,.ask,.tour,.tour.flip{grid-template-columns:minmax(0,1fr);gap:36px}
+.tour.flip .tx{order:0}
+.who3,.flow{grid-template-columns:1fr}
+.who3>div,.who3>div+div,.step,.step+.step{padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}
+.stack{grid-template-columns:1fr}.card.wide{grid-column:auto}
+.two-up{grid-template-columns:1fr}
+.stats{grid-template-columns:repeat(3,1fr)}
+.band{padding:48px 24px}
+.notes{grid-template-columns:1fr}.side{display:none}
+.sec{padding:64px 0}.tour{margin-top:64px}}
+.hero .wrap>*,.tour>*,.ask>*,.two-up>*,.stage>*{min-width:0}
+.who3>div,.step{min-width:0}
+@media(max-width:480px){h1{font-size:38px}.top{grid-template-columns:1fr}.top .l,.top .r{display:none}.aud div{grid-template-columns:1fr;gap:2px}}
+.partners{overflow:hidden}
+.mq{margin-top:40px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.mq-track{display:flex;width:max-content;animation:mq 32s linear infinite}
+.mq:hover .mq-track{animation-play-state:paused}
+.mq-set{display:flex;gap:20px;padding-right:20px}
+.pl{width:220px;height:96px;flex:none;border:1px solid transparent;border-radius:14px;background:transparent;display:grid;place-items:center;padding:18px 24px}
+.pl img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.pl span{font:600 16px var(--sans);color:#18120E}
+/* Only show the white card when the image failed and a text fallback span is used */
+.pl:has(span){border-color:var(--line);background:#fff}
+.mini .pl:has(span){background:#fff}
+@keyframes mq{to{transform:translateX(-50%)}}
+.hp{grid-column:1/-1;margin-top:8px;padding-top:28px;border-top:1px solid var(--line)}
+.mq.mini{margin-top:10px}
+.mini .pl{width:200px;height:80px}
+@media(prefers-reduced-motion:reduce){.mq-track{animation-duration:70s}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ===== cinematic v2 ===== */
+.lgd{display:none!important}
+:root[data-theme="dark"] .lgd{display:block!important}
+:root[data-theme="dark"] .lgl{display:none!important}
+.aur{position:fixed;inset:-20vmax;z-index:-1;pointer-events:none;transform:translate3d(0,calc(var(--sy,0)*-.07px),0)}
+.aur i{position:absolute;width:60vmax;height:60vmax;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--acc) 22%,transparent),transparent);animation:dr 46s ease-in-out infinite alternate}
+.aur i:nth-child(1){left:-4%;top:4%}
+.aur i:nth-child(2){right:-8%;top:34%;background:radial-gradient(closest-side,color-mix(in srgb,#FFB36B 15%,transparent),transparent);animation-duration:58s}
+.aur i:nth-child(3){left:28%;bottom:-8%;opacity:.7;animation-duration:70s}
+@keyframes dr{to{transform:translate3d(7vmax,-5vmax,0)}}
+.story{height:480svh;position:relative;margin-top:-64px}
+.pin{position:sticky;top:0;height:100svh;overflow:hidden;perspective:1100px;--p:0;--m:clamp(0,calc((var(--p) - .58)*9),1);--k:clamp(0,calc((var(--p) - .76)*9),1)}
+.ly{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;pointer-events:none}
+.h h1{font:400 clamp(50px,11.5vw,170px)/1 var(--serif);letter-spacing:-.035em}
+.ln{display:block;overflow:hidden;padding:.06em .04em .1em}
+.ln.sm{font:500 clamp(18px,2.4vw,30px)/1.2 var(--sans);letter-spacing:0;color:var(--soft);padding-bottom:.5em}
+.c{display:inline-block}
+.h .c{--o:clamp(0,calc((var(--p) - .005 - var(--i)*.004)*30),1);transform:translateY(calc(var(--o)*-190%));animation:up 1.1s cubic-bezier(.2,.7,.1,1) backwards;animation-delay:calc(var(--i)*38ms + 250ms)}
+@keyframes up{from{transform:translateY(110%)}}
+.ring{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:scale(calc(1 - var(--k)*.9)) rotateX(calc(-10deg - var(--m)*12deg)) rotateY(calc(var(--p)*480deg));opacity:calc(1 - var(--k)*1.1)}
+.pn{--w:17vmin;--R:31.7vmin;--a:clamp(0,calc((var(--p) - .03 - var(--i)*.012)*7),1);--t:clamp(0,calc((var(--p) - .36 - var(--i)*.018)*18),1);position:absolute;width:var(--w);height:calc(var(--w)*1.35);margin:calc(var(--w)*-.675) 0 0 calc(var(--w)*-.5);border:2px solid color-mix(in srgb,var(--ink) 72%,transparent);border-radius:9px;background:color-mix(in srgb,var(--bg) 70%,transparent);opacity:var(--a);transform:translate3d(calc((1 - var(--a))*var(--sx)*1vmin),calc((1 - var(--a))*var(--sy)*1vmin),calc((1 - var(--a))*var(--sz)*1vmin)) rotateY(calc(var(--i)*30deg)) rotateX(calc(var(--m)*var(--l)*1deg)) translateZ(var(--R)) rotateZ(calc((1 - var(--a))*var(--sr)*1deg))}
+.pn i{position:absolute;inset:0;border-radius:7px;background:var(--c);opacity:calc(var(--t)*.28)}
+.pn:before,.pn:after{content:'';position:absolute;left:14%;height:4px;border-radius:4px}
+.pn:before{right:14%;bottom:12%;background:var(--c);transform-origin:left;transform:scaleX(var(--t))}
+.pn:after{right:44%;top:14%;background:color-mix(in srgb,var(--ink) 55%,transparent)}
+.tally{opacity:min(clamp(0,calc((var(--p) - .42)*25),1),clamp(0,calc((.62 - var(--p))*25),1))}
+.tally b{font:400 clamp(70px,19vmin,210px)/.9 var(--serif);letter-spacing:-.04em}
+.tally span{margin-top:8px;font-size:clamp(14px,2vmin,20px);color:var(--soft)}
+.fin{--f:clamp(0,calc((var(--p) - .78)*12),1);visibility:hidden}
+.go .fin{visibility:visible}
+.mk{opacity:var(--f);transform:scale(calc(.5 + var(--f)*.5))}
+.mk img{width:clamp(72px,15vmin,130px);height:auto;display:block}
+.fin h2{padding-bottom:.14em;font:400 clamp(46px,9vw,128px)/1 var(--serif);letter-spacing:-.035em;max-width:none;margin-top:22px}
+.fin .c{--q:clamp(0,calc((var(--p) - .82 - var(--i)*.008)*18),1);transform:translateY(calc((1 - var(--q))*110%))}
+.fin .btn{margin-top:26px;opacity:clamp(0,calc((var(--p) - .9)*20),1)}
+.go .fin .btn{pointer-events:auto}
+.hint{position:absolute;left:50%;bottom:26px;translate:-50% 0;font-size:12px;color:var(--mute);text-align:center;opacity:clamp(0,calc((.05 - var(--p))*30),1)}
+.hint:after{content:'';display:block;width:1px;height:28px;margin:8px auto 0;background:var(--mute);transform-origin:top;animation:hn 2.2s ease-in-out infinite}
+@keyframes hn{0%{transform:scaleY(0)}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+.rv{opacity:var(--e,1);transform:translateY(calc((1 - var(--e,1))*36px))}
+.tilt{transform:perspective(1400px) rotateX(calc((1 - var(--e,1))*9deg)) translateY(calc((1 - var(--e,1))*50px)) scale(calc(.95 + var(--e,1)*.05));transform-origin:50% 100%;opacity:calc(.15 + var(--e,1)*.85)}
+.sec.tint{background:color-mix(in srgb,var(--soft-bg) 72%,transparent)}
+.roles{margin-top:56px}
+.rl{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:end;padding:26px 0;border-top:1px solid var(--line)}
+.rl:last-child{border-bottom:1px solid var(--line)}
+.rl:nth-child(even){--dx:70%}
+.rl h3{font:400 clamp(48px,9.5vw,128px)/1.05 var(--serif);letter-spacing:-.03em;overflow:hidden;padding-bottom:.06em}
+.rl h3 span{display:block;opacity:var(--e,1);transform:translateX(calc((1 - var(--e,1))*var(--dx,-70%)))}
+.rl p{font-size:17px;color:var(--soft);max-width:340px;opacity:var(--e,1)}
+.hz{height:520svh;padding:0}
+.hzp{position:sticky;top:0;height:100svh;overflow:hidden;perspective:1000px}
+.trk{display:flex;width:500vw;height:100%;transform:translateX(calc(var(--e,0)*-400vw))}
+.sl{width:100vw;height:100%;flex:none;display:flex;flex-direction:column;justify-content:flex-end;padding:0 8vw 12svh}
+.sl .n{font:400 clamp(120px,30vmin,360px)/.85 var(--serif);color:transparent;-webkit-text-stroke:2px var(--ink);letter-spacing:-.04em}
+.sl h3{font:400 clamp(36px,6.5vw,84px)/1.05 var(--serif);letter-spacing:-.025em;margin-top:10px}
+.sl p{margin-top:12px;max-width:420px;color:var(--soft);font-size:17px}
+.hzt{position:absolute;left:8vw;top:96px;font:400 22px var(--serif)}
+.bar{position:absolute;left:8vw;right:8vw;bottom:6svh;height:2px;background:var(--line)}
+.bar i{display:block;height:100%;background:var(--acc);transform-origin:left;transform:scaleX(var(--e,0))}
+.cube{--s:22vmin;--b:clamp(0,calc(var(--e,0)*9),1);position:absolute;right:14vw;top:30%;width:var(--s);height:var(--s);transform-style:preserve-3d;transform:rotateX(calc(-22deg + var(--e,0)*400deg)) rotateY(calc(var(--e,0)*620deg))}
+.cube u{position:absolute;inset:0;border:2px solid color-mix(in srgb,var(--ink) 75%,transparent);background:color-mix(in srgb,var(--acc) 6%,transparent);opacity:var(--b);transform:var(--f) translateZ(calc(var(--s)/2 + (1 - var(--b))*45vmin))}
+.cube u:nth-child(1){--f:rotateY(0)}.cube u:nth-child(2){--f:rotateY(90deg)}.cube u:nth-child(3){--f:rotateY(180deg)}.cube u:nth-child(4){--f:rotateY(270deg)}.cube u:nth-child(5){--f:rotateX(90deg)}.cube u:nth-child(6){--f:rotateX(-90deg)}
+.band{background:color-mix(in srgb,var(--card) 55%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.lite .aur{display:none}
+.lite .band,.lite nav{backdrop-filter:none;-webkit-backdrop-filter:none}
+.calm .c,.calm .hint:after,.calm .aur i{animation:none}
+@media(max-width:940px){.rl{grid-template-columns:1fr;gap:16px}.cube{right:10vw;top:18%;--s:20vmin}}
+
+/* ===== whole-page motion ===== */
+.pgb{position:fixed;left:0;top:0;width:100%;height:3px;background:var(--acc);transform-origin:left;transform:scaleX(var(--pg,0));z-index:30;pointer-events:none}
+nav{transition:background-color .3s,border-color .3s,color .3s,transform .5s cubic-bezier(.2,.7,.1,1)}
+nav.hide{transform:translateY(-100%)}
+.mh{overflow:hidden;padding-bottom:.14em}
+.mh>span{display:block;transform:translateY(calc((1 - var(--e,1))*105%))}
+.tx li{--n:0;--r:clamp(0,calc(var(--e,1)*2.4 - var(--n)*.3),1);opacity:var(--r);transform:translateX(calc((1 - var(--r))*-34px))}
+.tx li:nth-child(2){--n:1}.tx li:nth-child(3){--n:2}.tx li:nth-child(4){--n:3}.tx li:nth-child(5){--n:4}.tx li:nth-child(6){--n:5}
+.trend .w{transform-origin:bottom;transform:scaleY(clamp(0,calc(var(--e,1)*1.7 - .35),1))}
+#ringA{transform:rotate(calc((1 - var(--e,1))*-160deg));opacity:var(--e,1)}
+.stack{perspective:1100px}
+.card[data-sc]{opacity:var(--e,1);transform:rotateX(calc((1 - var(--e,1))*24deg)) translateY(calc((1 - var(--e,1))*70px)) scale(calc(.94 + var(--e,1)*.06));transform-origin:50% 100%}
+details[data-sc]{opacity:var(--e,1);transform:translateX(calc((1 - var(--e,1))*-60px))}
+details:nth-of-type(even)[data-sc]{transform:translateX(calc((1 - var(--e,1))*60px))}
+details[open] p{animation:dp .5s cubic-bezier(.2,.7,.1,1)}
+@keyframes dp{from{opacity:0;transform:translateY(-10px)}}
+details summary:after{transition:transform .4s cubic-bezier(.2,.7,.1,1)}
+details[open] summary:after{transform:rotate(180deg)}
+.pl{transform:translateY(calc((1 - var(--e,1))*0px))}
+.partners .mq{opacity:var(--e,1);transform:scaleX(calc(.9 + var(--e,1)*.1))}
+.bnd{opacity:calc(.1 + var(--e,1)*.9);transform:perspective(1200px) rotateX(calc((1 - var(--e,1))*16deg)) scale(calc(.88 + var(--e,1)*.12));transform-origin:50% 100%}
+.band .c{transform:translateY(calc((1 - clamp(0,calc(var(--e,1)*2.2 - var(--i)*.06),1))*110%))}
+.band .btn{opacity:clamp(0,calc(var(--e,1)*3 - 1.6),1)}
+.calm nav{transition:none}
+
+/* ===== 3D shapes everywhere ===== */
+#who,#stack,#faq,#partners,.band{position:relative}
+.geo{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:calc(var(--gv,0)*.6)}
+.geo .sh{position:absolute;--r:calc(var(--g,0)*2.4)}
+.geo .sh:nth-child(1){left:2vw;top:62%;--s:15vmin;transform:translateY(calc(var(--g,0)*-34vh))}
+.geo .sh:nth-child(2){right:2vw;top:14%;--s:17vmin;transform:translateY(calc(var(--g,0)*42vh))}
+.geo .sh:nth-child(3){right:18vw;bottom:6%;--s:9vmin;transform:translateY(calc(var(--g,0)*-20vh))}
+.sh{--s:10vmin;--r:var(--e,0);position:relative;width:var(--s);height:var(--s);perspective:700px;pointer-events:none}
+.sh>div{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(calc(-25deg + var(--r)*540deg)) rotateY(calc(var(--r)*720deg))}
+.sh u{position:absolute;inset:0;display:block;border:1.5px solid color-mix(in srgb,var(--ink) 58%,transparent);background:color-mix(in srgb,var(--acc) 6%,transparent);text-decoration:none}
+.sh.pa{position:absolute}.sh.sm{--s:58px;margin-bottom:22px}.sh.lg{--s:24vmin}.sh.md{--s:15vmin}
+.k-cube u:nth-child(1){transform:translateZ(calc(var(--s)/2))}.k-cube u:nth-child(2){transform:rotateY(90deg) translateZ(calc(var(--s)/2))}.k-cube u:nth-child(3){transform:rotateY(180deg) translateZ(calc(var(--s)/2))}.k-cube u:nth-child(4){transform:rotateY(270deg) translateZ(calc(var(--s)/2))}.k-cube u:nth-child(5){transform:rotateX(90deg) translateZ(calc(var(--s)/2))}.k-cube u:nth-child(6){transform:rotateX(-90deg) translateZ(calc(var(--s)/2))}
+.k-gyro u{border-radius:50%;background:none;transform:rotateY(calc(var(--i)*30deg))}
+.k-gyro u:last-child{transform:rotateX(90deg);border-color:var(--acc);border-width:2px}
+.k-slabs u{border-radius:9px;transform:translateZ(calc((var(--i) - 2)*var(--s)*.22)) rotate(calc(var(--i)*var(--r)*42deg))}
+.k-torus u{inset:auto;width:34%;height:34%;left:33%;top:33%;border-radius:50%;background:none;transform:rotateY(calc(var(--i)*30deg)) translateX(calc(var(--s)*.33))}
+.card[data-sc]{transform:rotateX(calc((1 - var(--e,1))*24deg + var(--rx,0deg))) rotateY(var(--ry,0deg)) translateY(calc((1 - var(--e,1))*70px)) scale(calc(.94 + var(--e,1)*.06))}
+@media(max-width:700px){.sh.lg{--s:15vmin}.sh.md{--s:12vmin}.band .sh{display:none}.geo .sh:nth-child(3){display:none}}
+
+.ly.h{opacity:clamp(0,calc((.16 - var(--p))*30),1)}
+
+/* ===== selection + softer dark mode ===== */
+::selection{background:var(--acc);color:#18120E}
+::-moz-selection{background:var(--acc);color:#18120E}
+:root[data-theme="dark"]{--bg:#141414;--card:#1b1b1b;--soft-bg:#181818;--surface-2:#242424;--ink:#E2E2E2;--soft:#A9A9A9;--mute:#868686;--line:#2d2d2d;--acc-soft:#262626;--shadow:rgba(0,0,0,.5)}
+:root[data-theme="dark"] .aur i{background:radial-gradient(closest-side,rgba(255,255,255,.055),transparent)}
+:root[data-theme="dark"] .sh u,:root[data-theme="dark"] .cube u{background:rgba(255,255,255,.03)}
+:root[data-theme="dark"] .band{background:rgba(255,255,255,.035)}
+
+/* ===== v3: flat paper, red pen ===== */
+:root{--disp:'Archivo','Arial Narrow',system-ui,sans-serif;--pen:'Covered By Your Grace','Segoe Print',cursive;--red:#D6281E;
+--bg:#fff;--card:#fff;--soft-bg:#F3F3F3;--surface-2:#EBEBEB;--ink:#000;--soft:#3A3A3A;--mute:#6B6B6B;--line:#DCDCDC;--acc-soft:#FFF0E0;--shadow:transparent}
+:root[data-theme="dark"]{--bg:#161616;--card:#1D1D1D;--soft-bg:#1A1A1A;--surface-2:#262626;--ink:#F4F4F4;--soft:#B8B8B8;--mute:#8C8C8C;--line:#2E2E2E;--acc-soft:#2A2A2A;--red:#FF6257}
+.aur,.geo,.sh,.cube{display:none!important}
+nav{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
+.sec.tint{background:var(--soft-bg)}
+.band{background:var(--soft-bg);backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:4px}
+.win,.dlg,.pal,.card,.life{box-shadow:none;border-radius:4px}
+.win,.dlg{border:1.5px solid var(--ink)}
+.btn{border-radius:4px;color:#000}.btn:hover{box-shadow:none}
+.pn{background:var(--bg);border-radius:3px}
+.app{min-width:700px}.pill span{padding:5px 10px;font-size:12px}
+h1,h2,.rl h3,.sl h3,.sl .n,.tally b,.fin h2,.tx h3,.step b,.logo,.band h2{font-family:var(--disp);font-weight:800;font-stretch:108%;letter-spacing:-.035em}
+.logo{font-size:22px}
+.h h1{font-size:clamp(34px,8.4vw,128px)}
+.fin h2{font-size:clamp(34px,7.6vw,116px)}
+.rl h3{font-size:clamp(40px,8vw,112px)}
+.sl h3{font-weight:700}
+h2{font-size:clamp(28px,3.8vw,46px);font-weight:700}
+.tx h3{font-size:clamp(24px,2.8vw,32px);font-weight:700;font-stretch:100%;letter-spacing:-.025em}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{padding:4px 10px;border:1px solid var(--line);border-radius:99px;font-size:12px;color:var(--soft)}
+.chips .on{border-color:var(--acc);background:var(--acc-soft);color:var(--ink)}
+.slip{position:absolute;right:8vw;top:22%;width:min(290px,60vw);padding:18px 20px 20px 38px;background:var(--card);border:1.5px solid var(--ink);border-radius:3px;transform:rotate(2.5deg);font-size:13px;color:var(--mute);background-image:linear-gradient(90deg,transparent 24px,var(--red) 24px,var(--red) 25px,transparent 25px)}
+.slip b{display:block;font:700 18px/1.2 var(--disp);letter-spacing:-.02em;color:var(--ink)}
+.slip .sst{display:inline-block;margin-top:12px;padding:3px 11px;border-radius:99px;font-weight:600;font-size:12px;background:var(--surface-2);color:var(--mute)}
+.slip[data-s="2"] .sst{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.slip[data-s="3"] .sst{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+.slip[data-s="4"] .sst{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.slip .note{font:400 24px/1.15 var(--pen);color:var(--red);margin-top:12px;min-height:2.4em}
+@media(max-width:940px){.slip{top:30%;right:5vw}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+<symbol id="upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+<symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="save" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></symbol>
+<symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="kb" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M7 16h10"/></symbol>
+<symbol id="note" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></symbol>
+<symbol id="device" viewBox="0 0 24 24"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></symbol>
+<symbol id="phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></symbol>
+<symbol id="code" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
+<symbol id="db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+<symbol id="disk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></symbol>
+<symbol id="glow" viewBox="0 0 24 24"><path d="M3 15c3-6 6 0 9-6s6 0 9-3M3 20c3-6 6 0 9-6s6 0 9-3"/></symbol>
+<symbol id="sheet" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></symbol>
+<symbol id="type" viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+</svg>
+
+<i class="pgb" id="pgb" aria-hidden="true"></i>
+<nav id="nav"><div class="wrap">
+<a class="logo" href="#top" aria-label="Time12 home"><img class="lgl" src="taiwan.png" alt="" width="30" height="30"><img class="lgd" src="china.png" alt="" width="30" height="30">Time12</a>
+<div class="links"><a href="#how">How it works</a><a href="#tour">Inside the app</a><a href="#faq">FAQ</a></div>
+<div class="right">
+<button class="tog" id="themeBtn" type="button" aria-label="Toggle light and dark mode" title="Toggle theme">
+<svg class="i sun" viewBox="0 0 24 24" aria-hidden="true"><use href="#sun"/></svg>
+<svg class="i moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+</button>
+<a class="btn" href="https://time12.xin/dash">Open Time12</a>
+</div>
+</div></nav>
+
+<!-- ============ STORY ============ -->
+<div class="aur" id="aur" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="geo" id="geo" aria-hidden="true"></div>
+<section class="story" id="story"><div class="pin" id="pin">
+<div class="ring" id="ring" aria-hidden="true"></div>
+<header class="ly h"><h1 aria-label="Stop asking “Are you done?”"><span class="ln sm" data-sp>Stop asking</span><span class="ln" data-sp>“Are you done?”</span></h1></header>
+<div class="ly tally" aria-hidden="true"><b id="num">0</b><span>of 12 are done</span></div>
+<div class="ly fin"><div class="mk"><img class="lgl" src="taiwan.png" alt="Time12"><img class="lgd" src="china.png" alt="Time12"></div><h2 class="ln" data-sp>Make time true.</h2><a class="btn" href="https://time12.xin/dash">Open Time12 <svg class="i" width="18" height="18"><use href="#arrow"/></svg></a></div>
+<div class="hint" aria-hidden="true">Scroll</div>
+</div></section>
+
+<!-- ============ WHO ============ -->
+<section class="sec" id="who"><div class="wrap">
+<h2 class="rv" data-sc>For whoever assigns, and whoever hands in.</h2>
+<div class="roles">
+<div class="rl" data-sc><h3><span>Teachers</span></h3><p>Post homework with a deadline. Verify every hand-in.</p></div>
+<div class="rl" data-sc><h3><span>Managers</span></h3><p>Assign to teams. See who is stuck.</p></div>
+<div class="rl" data-sc><h3><span>Students</span></h3><p>See what is due. Hand it in. Keep your streak.</p></div>
+</div>
+</div></section>
+
+<!-- ============ HOW ============ -->
+<section class="sec tint hz" id="how" data-sc="pin"><div class="hzp">
+<div class="hzt">Five steps, one screen.</div>
+<div class="slip" id="slip" data-s="0" aria-hidden="true"><b>Lab report: Pendulum</b><small>Physics 10B · Due Oct 14, 11:59 PM</small><br><span class="sst">Not assigned yet</span><p class="note"></p></div>
+<div class="trk">
+<div class="sl"><b class="n">1</b><h3>Set up</h3><p>Create groups and accounts, or import a class from one file.</p></div>
+<div class="sl"><b class="n">2</b><h3>Assign</h3><p>Pick a group or just a few people, set an exact due time, attach links or files.</p></div>
+<div class="sl"><b class="n">3</b><h3>Hand in</h3><p>Members submit text, links and files.</p></div>
+<div class="sl"><b class="n">4</b><h3>Verify or reject</h3><p>Send it back with a reason. Every attempt is kept as its own version.</p></div>
+<div class="sl"><b class="n">5</b><h3>Read results</h3><p>See who was on time, late, open or missed, and how a class grows over months.</p></div>
+</div>
+<div class="bar"><i></i></div>
+</div></section>
+
+<!-- ============ TOUR ============ -->
+<section class="sec" id="tour" style="padding-top:84px"><div class="wrap">
+<h2>Inside the app</h2>
+<p class="subh">These are the screens you will use, drawn from the app itself. The tabs across the top are Notes, Tasks, Org, Analytics, Rewards and Leaderboard.</p>
+
+<!-- T1 Org tree -->
+<div class="tour">
+<div class="tx rv" data-sc="">
+<h3>Organize people into groups and sub-groups</h3>
+<p>The Org tab is where the organization account builds its structure.</p>
+<ul>
+<li><b>Groups nest.</b> Add a sub-group to any group, add members, or remove them with one click.</li>
+<li><b>Add existing or create new.</b> Put current accounts in a group, or make new accounts and assign them immediately.</li>
+<li><b>Group admins.</b> Make someone an admin of a group or sub-group so they can run it without owning the whole organization.</li>
+<li><b>Accounts are named under your organization,</b> like <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e5f574d565f7e534d10565f4c4a">[email&#160;protected]</a></code>.</li>
+<li><b>Manage passwords.</b> Re-roll a password, delete one account, or select several and delete them together.</li>
+</ul>
+</div>
+<div class="stage tilt" data-sc=""><div class="win" role="img" aria-label="Time12 Org tab with groups, a nested sub-group and a sub-accounts table">
+<div class="wbar"><i></i><i></i><i></i><span>time12.xin/dash</span></div>
+<div class="wbody"><div class="app">
+<div class="top"><div class="l"><i></i>Ready</div><div class="pill"><span>Notes</span><span>Tasks</span><span class="on">Org</span><span>Analytics</span><span>Rewards</span><span>Leaderboard</span></div><div class="r"><span class="ab p">Add ▾</span></div></div>
+<div class="gc">
+<div class="gh"><div class="gn">Physics 10B <span class="gid">ID: 3f9a12c0</span></div><div class="ga"><span class="ab">Admins</span><span class="ab">Add Member</span><span class="ab">+ Sub-Group</span><span class="ab d">Delete</span></div></div>
+<div class="mem"><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97f6fee4fff6d7fae4b9fff6e5e3">[email&#160;protected]</a> <em>×</em></span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="781715190a38150b5610190a0c">[email&#160;protected]</a> <em>×</em></span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="274b4e4946674a54094f465553">[email&#160;protected]</a> <em>×</em></span><span class="org">Show 9 more</span></div>
+</div>
+<div class="nest"><div class="gc">
+<div class="gh"><div class="gn">Lab team A <span class="gid">ID: 9b21e7d4</span></div><div class="ga"><span class="ab">Admins</span><span class="ab">Add Member</span><span class="ab">+ Sub-Group</span><span class="ab d">Delete</span></div></div>
+<div class="mem"><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="48313d3b3d2e08253b6620293a3c">[email&#160;protected]</a> <em>×</em></span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fd909894bd908ed3959c8f89">[email&#160;protected]</a> <em>×</em></span></div>
+</div></div>
+<div class="tbl" style="margin-top:6px">
+<div class="th lab" style="grid-template-columns:24px 1fr auto"><span><i class="chk"></i></span><span>Sub-account username</span><span>Actions</span></div>
+<div class="tr acc"><span><i class="chk on"></i></span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2948405a414869445a0741485b5d">[email&#160;protected]</a></span><span class="ga"><span class="rb">Reroll</span><span class="rb d">Delete</span></span></div>
+<div class="tr acc"><span><i class="chk on"></i></span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="98f7f5f9ead8f5ebb6f0f9eaec">[email&#160;protected]</a></span><span class="ga"><span class="rb">Reroll</span><span class="rb d">Delete</span></span></div>
+<div class="tr acc"><span><i class="chk"></i></span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e28e8b8c83a28f91cc8a839096">[email&#160;protected]</a></span><span class="ga"><span class="rb">Reroll</span><span class="rb d">Delete</span></span></div>
+<div class="selbar"><span>2 selected</span><span class="ab d">Delete Selected</span></div>
+</div>
+</div></div></div></div>
+</div>
+
+<!-- T2 Create task -->
+<div class="tour flip">
+<div class="tx rv" data-sc="">
+<h3>Assign a task with a real deadline</h3>
+<p>Every task goes to one group, and everyone in it receives it.</p>
+<ul>
+<li><b>Exact due time,</b> not just a day. It defaults to 11:59 PM today.</li>
+<li><b>Reference links and files</b> go with the task, up to 25 MB per file.</li>
+<li><b>Whole group or specific people.</b> People who join the group later do not receive it.</li>
+<li><b>Standard or Automated.</b> An automated task is marked by AI against your checklist, see below.</li>
+<li><b>Deadlines are enforced.</b> After the due time, unsubmitted tasks close.</li>
+</ul>
+</div>
+<div class="stage tilt" data-sc=""><div class="dlg" role="img" aria-label="Create New Task dialog">
+<div class="dt">Create New Task</div><div class="dx">Assign a new task to one of your groups.</div>
+<div class="f2"><label>Task title</label><div class="in v">Lab report: Pendulum</div></div>
+<div class="f2"><label>Description <i>(optional)</i></label><div class="in v" style="align-items:flex-start;min-height:52px">Measure the period at five string lengths and plot T² against L.</div></div>
+<div class="f2"><label>Assign to group</label><div class="in v">Physics 10B <span>⌄</span></div></div>
+<div class="f2"><label>Task type</label><div class="in v">Standard Task <span>⌄</span></div></div>
+<div class="f2"><label>Due date &amp; time</label><div class="in v">10/14/2026, 11:59 PM</div></div>
+<div class="f2"><label>Attach links <i>(optional)</i></label><div class="two"><div class="in v">https://…/pendulum-handout</div><div class="in v">Lab handout</div></div><span class="ab">+ Add Link</span></div>
+<div class="f2" style="margin-top:12px"><label>Attach files <i>(optional, max 25 MB each)</i></label><div class="drop"><svg class="i"><use href="#upload"/></svg>Click to browse or drag &amp; drop</div></div>
+<div class="da"><span class="ab">Cancel</span><span class="ab p">Create</span></div>
+</div></div>
+</div>
+
+<!-- T3 My tasks -->
+<div class="tour">
+<div class="tx rv" data-sc="">
+<h3>Tasks sort themselves by what needs you next</h3>
+<p>The Tasks tab is a member's own dashboard.</p>
+<ul>
+<li><b>Four groups:</b> To do, In review, Overdue and Completed. Each one collapses.</li>
+<li><b>Sent-back work jumps to the top</b> of To do, with the reviewer's note.</li>
+<li><b>Closed means closed.</b> Past the due time, submissions close and the card says so.</li>
+<li><b>One summary line</b> counts every group at a glance.</li>
+</ul>
+</div>
+<div class="stage tilt" data-sc=""><div class="win" role="img" aria-label="Time12 My Tasks tab with a 60 day graph and task cards">
+<div class="wbar"><i></i><i></i><i></i><span>time12.xin/dash</span></div>
+<div class="wbody"><div class="app">
+<div class="top"><div class="l"><i></i>Ready</div><div class="pill"><span>Notes</span><span class="on">Tasks</span><span>Org</span><span>Analytics</span><span>Rewards</span><span>Leaderboard</span></div><div class="r"></div></div>
+<div class="mt">Tasks</div>
+<div class="mm"><span>Member Dashboard</span></div>
+<div class="sect" style="margin-bottom:10px">To do<small>2</small></div>
+<div class="tc rejected"><div class="tch"><div><div class="tct">Lab report: Pendulum</div><div class="tcm">Physics 10B · Due: Oct 14, 2026, 11:59 PM</div></div><span class="badge rejected">Rejected</span></div>
+<div class="rev"><b>NOTE FROM YOUR TEACHER</b>Missing sources. Add two sources and rewrite the conclusion.</div>
+<div class="tcf"><span class="ab p">Resubmit</span></div></div>
+<div class="tc"><div class="tch"><div><div class="tct">Circuit worksheet</div><div class="tcm">Physics 10B · Due: Oct 16, 2026, 8:00 AM</div></div><span class="badge">Not started</span></div></div>
+<div class="sect sec2">In review<small>1</small></div>
+<div class="rw"><div class="m"><b>Reading response: Chapter 4</b><small>English 10 · Handed in Oct 11</small></div><span class="badge pending">Pending</span></div>
+<div class="sect sec2">Overdue<small>1</small></div>
+<div class="rw"><div class="m"><b>Weekly safety quiz</b><small class="od">Deadline Passed — Submissions Closed</small></div><span class="badge overdue">Overdue</span></div>
+<div class="sect sec2">Completed<small>8</small></div>
+<div class="rw" style="margin-bottom:0"><div class="m"><b>Motion graphs</b><small>Verified Sep 24</small></div><span class="badge done">Completed</span></div>
+</div></div></div></div>
+</div>
+
+<!-- T4 Submit + review -->
+<div class="tour flip">
+<div class="tx rv" data-sc="">
+<h3>Hand in, review, send back with a reason</h3>
+<p>Members need at least one of text, links or files. Leaders review from the Org tab.</p>
+<ul>
+<li><b>Files are read for you.</b> Text from .txt, .md, .csv and .docx lands in the answer box. For photos and scans you are asked first, then it is transcribed.</li>
+<li><b>Reject with a reason.</b> Tap Incomplete, Wrong format, Missing sources, Off topic or Hard to read, then add a note.</li>
+<li><b>Every attempt is kept</b> as its own version, with its own note: v2, v3 and so on.</li>
+<li><b>Whole group visible.</b> Members who have not handed in show as not started, so nobody hides.</li>
+</ul>
+</div>
+<div class="stage tilt" data-sc="" style="flex-direction:column;gap:18px;align-items:center">
+<div class="dlg" role="img" aria-label="Submit Task dialog">
+<div class="dt">Submit Task</div><div class="dx">Provide your text response and attach any relevant links for review.</div>
+<div class="f2"><label>Submission text</label><div class="in" style="align-items:flex-start;min-height:56px">Write your response…</div></div>
+<div class="f2"><label>Attach links <i>(optional)</i></label><div class="two"><div class="in">URL</div><div class="in">Label</div></div><span class="ab">+ Add Link</span></div>
+<div class="f2" style="margin-top:12px"><label>Attach files <i>(optional, max 25 MB each)</i></label><div class="drop"><svg class="i"><use href="#upload"/></svg>Click to browse or drag &amp; drop</div></div>
+<div class="da" style="margin-top:6px"><span class="ab">Cancel</span><span class="ab p">Submit</span></div>
+</div>
+<div class="win" role="img" aria-label="Org tab task with submitted work and Verify and Reject buttons">
+<div class="wbody"><div class="app" style="padding-top:18px">
+<div class="prog" style="margin:0;border:0;padding:0"><span class="lab">Member progress</span>
+<div class="mp"><div style="flex:1"><div><b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="325d5f5340725f411c5a534046">[email&#160;protected]</a></b><span class="st pending">(pending)</span></div>
+<div class="sub">Table and graph attached.<a href="#"><svg class="i"><use href="#link"/></svg>pendulum-data.xlsx</a></div></div>
+<div class="acts"><span class="rb">Verify</span><span class="rb d">Reject</span></div></div>
+<div class="mp"><div style="flex:1"><div><b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3d5c544e555c7d504e13555c4f49">[email&#160;protected]</a></b><span class="st completed">(completed)</span></div>
+<div class="sub">Results in the linked sheet.<a href="#"><svg class="i"><use href="#link"/></svg>Pendulum results</a></div></div><div class="acts"></div></div>
+<div class="mp"><div><b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9ff3f6f1fedff2ecb1f7feedeb">[email&#160;protected]</a></b><span class="st not_started">(not started)</span></div><div class="acts"></div></div>
+<button class="more" type="button" tabindex="-1">Show 9 more</button>
+</div>
+</div></div></div>
+<div class="dlg" role="img" aria-label="Reject dialog with reason chips"><div class="dt">Send back to omar</div><div class="dx">Tell omar exactly what to change. This attempt stays in the history.</div><div class="chips"><span>Incomplete</span><span>Wrong format</span><span class="on">Missing sources</span><span>Off topic</span><span>Hard to read</span></div><div class="f2" style="margin-top:12px"><div class="in v">Add two sources and rewrite the conclusion.</div></div><div class="da"><span class="ab">Cancel</span><span class="ab p">Reject</span></div></div>
+</div>
+</div>
+
+<!-- T5 Analytics -->
+<div class="tour full">
+<div class="tx rv" data-sc="">
+<h3>Analytics that answer “who is behind?”</h3>
+<p>One organization-wide report, explored by period, person, group or task. Members see only their own history.</p>
+<ul>
+<li><b>Five outcomes:</b> on time, late, in review, open and missed.</li>
+<li><b>Seven periods:</b> 1D, 5D, 1W, 1M, 6M, 1Y and ALL. The chart groups by hour, day, week or month to match.</li>
+<li><b>Drill down</b> from the whole organization to a group, a person or a single task, with breadcrumbs back.</li>
+<li><b>Needs attention</b> lists people with missed deadlines. Search finds any person, group or task.</li>
+<li><b>Include sub-groups</b> rolls child groups into a parent. <b>Download Excel</b> exports the current view.</li>
+<li><b>History and growth.</b> Save snapshots of a team's results, then compare past groups with the current one.</li>
+</ul>
+</div>
+<div class="win tilt" data-sc="" role="img" aria-label="Time12 Analytics tab showing completion stats, a 30 day chart and ranked lists">
+<div class="wbar"><i></i><i></i><i></i><span>time12.xin/dash</span></div>
+<div class="wbody"><div class="app" style="min-width:680px">
+<div class="top"><div class="l"><i></i>Ready</div><div class="pill"><span>Notes</span><span>Tasks</span><span>Org</span><span class="on">Analytics</span><span>Rewards</span><span>Leaderboard</span></div><div class="r"><span class="ab">Refresh</span></div></div>
+<div class="mt">Analytics</div>
+<div class="mm"><span>24 people</span><u></u><span>3 groups</span><u></u><span>9 tasks</span></div>
+<div class="an-tools"><div class="in"><span>Search a person, group or task</span></div><div class="seg"><span class="on">All</span><span>People</span><span>Groups</span><span>Tasks</span></div></div>
+<div class="seg" style="margin-bottom:18px"><span>1D</span><span>5D</span><span>1W</span><span class="on">1M</span><span>6M</span><span>1Y</span><span>ALL</span></div>
+<div class="an-head"><div><div class="an-name">Whole organization</div><div class="an-s">86 assignments in this period</div></div><span class="ab">Download Excel</span></div>
+<div class="stats">
+<div class="stat"><b>71<small>of 86 · 83%</small></b><span>Completed</span></div>
+<div class="stat"><b>58</b><span><i style="background:var(--ok)"></i>On time</span></div>
+<div class="stat"><b>13</b><span><i style="background:var(--warn)"></i>Late</span></div>
+<div class="stat"><b>6</b><span><i style="background:var(--acc)"></i>In review</span></div>
+<div class="stat"><b>5</b><span><i style="background:var(--mute)"></i>Open</span></div>
+<div class="stat"><b class="bad">4</b><span><i style="background:var(--bad)"></i>Missed</span></div>
+</div>
+<div class="sg"><i style="flex:58;background:var(--ok)"></i><i style="flex:13;background:var(--warn)"></i><i style="flex:6;background:var(--acc)"></i><i style="flex:5;background:var(--mute)"></i><i style="flex:4;background:var(--bad)"></i></div>
+<div class="trh">Last 30 days</div>
+<div class="trend" id="trend"></div><div class="trl" id="trendl"></div>
+<div class="two-up sec2">
+<div><div class="sect">Needs attention<small>3</small></div>
+<div class="rw"><div class="m"><b>tariq<span class="org">@ms.hart</span></b><small>9 assignments · <span class="bad">2 missed</span></small></div><span class="sg s"><i style="flex:5;background:var(--ok)"></i><i style="flex:2;background:var(--warn)"></i><i style="flex:2;background:var(--bad)"></i></span><span class="pc">78%</span><svg class="i ch"><use href="#chev"/></svg></div>
+<div class="rw"><div class="m"><b>noor<span class="org">@ms.hart</span></b><small>8 assignments · <span class="bad">1 missed</span></small></div><span class="sg s"><i style="flex:6;background:var(--ok)"></i><i style="flex:1;background:var(--warn)"></i><i style="flex:1;background:var(--bad)"></i></span><span class="pc">88%</span><svg class="i ch"><use href="#chev"/></svg></div>
+<div class="rw"><div class="m"><b>sam<span class="org">@ms.hart</span></b><small>10 assignments · <span class="bad">1 missed</span></small></div><span class="sg s"><i style="flex:7;background:var(--ok)"></i><i style="flex:2;background:var(--acc)"></i><i style="flex:1;background:var(--bad)"></i></span><span class="pc">70%</span><svg class="i ch"><use href="#chev"/></svg></div></div>
+<div><div class="sect">Groups<small>3</small></div>
+<div class="rw"><div class="m"><b>Physics 10B</b><small>12 people</small></div><span class="sg s"><i style="flex:30;background:var(--ok)"></i><i style="flex:7;background:var(--warn)"></i><i style="flex:3;background:var(--acc)"></i><i style="flex:2;background:var(--bad)"></i></span><span class="pc">88%</span><svg class="i ch"><use href="#chev"/></svg></div>
+<div class="rw" style="margin-left:20px"><div class="m"><b>Lab team A</b><small>2 people</small></div><span class="sg s"><i style="flex:9;background:var(--ok)"></i><i style="flex:1;background:var(--warn)"></i></span><span class="pc">100%</span><svg class="i ch"><use href="#chev"/></svg></div>
+<div class="rw"><div class="m"><b>English 10</b><small>12 people · <span class="bad">2 missed</span></small></div><span class="sg s"><i style="flex:28;background:var(--ok)"></i><i style="flex:6;background:var(--warn)"></i><i style="flex:3;background:var(--acc)"></i><i style="flex:2;background:var(--bad)"></i></span><span class="pc">83%</span><svg class="i ch"><use href="#chev"/></svg></div></div>
+</div>
+</div></div></div>
+
+<div class="two-up" style="margin-top:20px">
+<div class="win tilt" data-sc="" role="img" aria-label="Analytics task view with a ring and a people list">
+<div class="wbody"><div class="app" style="min-width:0;padding-top:20px">
+<div class="an-top"><div class="ringw"><svg viewBox="0 0 150 150" id="ringA"></svg><b>9<small>of 12 done</small></b></div>
+<div><div class="an-name">Lab report: Pendulum</div><div class="an-s">Physics 10B · Due Oct 14, 2026, 11:59 PM</div></div></div>
+<div class="sect sec2">People<small>12</small></div>
+<div class="rw"><div class="m"><b>tariq<span class="org">@ms.hart</span></b><small>Nothing handed in</small></div><span class="badge missed n">Missed</span></div>
+<div class="rw"><div class="m"><b>omar<span class="org">@ms.hart</span></b><small>Rejected, needs resubmission</small></div><span class="badge n">Open</span></div>
+<div class="rw"><div class="m"><b>lina<span class="org">@ms.hart</span></b><small>Handed in Oct 13, 10:42 PM</small></div><span class="badge review n">In review</span></div>
+<div class="rw" style="margin-bottom:0"><div class="m"><b>aisha<span class="org">@ms.hart</span></b><small>Handed in Oct 12, 4:15 PM</small></div><span class="badge done n">On time</span></div>
+</div></div></div>
+<div class="win tilt" data-sc="" role="img" aria-label="Analytics person view with a results table">
+<div class="wbody"><div class="app" style="min-width:420px;padding-top:20px">
+<div class="an-name">omar<span class="org">@ms.hart</span></div><div class="an-s">Physics 10B</div>
+<div class="tbl" style="margin-top:14px"><table class="pt"><thead><tr><th>Task</th><th>Due</th><th>Result</th><th>Handed in</th></tr></thead><tbody>
+<tr><td>Lab report: Pendulum</td><td>Oct 14, 11:59 PM</td><td><span class="badge n">Redo</span></td><td>Oct 12, 9:03 PM</td></tr>
+<tr><td>Weekly safety quiz</td><td>Oct 8, 11:59 PM</td><td><span class="badge done n">On time</span></td><td>Oct 8, 6:20 PM</td></tr>
+<tr><td>Circuit worksheet</td><td>Oct 1, 11:59 PM</td><td><span class="badge late n">Late</span></td><td>Oct 2, 8:10 AM</td></tr>
+<tr><td>Motion graphs</td><td>Sep 24, 11:59 PM</td><td><span class="badge done n">On time</span></td><td>Sep 23, 7:48 PM</td></tr>
+</tbody></table></div>
+</div></div></div>
+</div>
+</div>
+
+<!-- T6 Bulk import -->
+<div class="tour">
+<div class="tx rv" data-sc="">
+<h3>Set up a whole class from one file</h3>
+<p>Add Account has a Single Account tab and an Import CSV/Excel tab.</p>
+<ul>
+<li><b>Three columns:</b> <code>group,username,password</code>. Header row optional.</li>
+<li><b>Missing groups are created</b> for you, and existing accounts are simply added to the group.</li>
+<li><b>Blank passwords are generated</b> for new accounts. Or set one custom password for the whole batch.</li>
+<li><b>.csv, .xlsx or .xls,</b> by drag and drop, file picker or pasted text.</li>
+<li><b>Need to tidy a list first?</b> Copy the built-in AI prompt, paste your list into any AI, and bring back clean rows.</li>
+<li><b>Credentials are shown once</b> after an account or an import is created, so copy them then.</li>
+</ul>
+</div>
+<div class="stage tilt" data-sc=""><div class="dlg fade" role="img" aria-label="Add Account dialog on the Import CSV/Excel tab">
+<div class="dt">Add Account</div><div class="dx">Create a new account under your organization namespace (ms.hart@), or import many at once from a CSV/Excel file.</div>
+<div class="tg"><span>Single Account</span><span class="on">Import CSV/Excel</span></div>
+<div class="f2"><label>File format</label>
+<div class="fmt">Three columns, one row per user: <code>group,username,password</code><br>• <b>group</b>: required. Created automatically if it doesn't exist.<br>• <b>username</b>: required. Existing accounts are just added to the group.<br>• <b>password</b>: optional. Blank generates a random one for new accounts.</div>
+<div class="fmt mono csvx">group,username,password<br>Physics 10B,aisha,<br>Physics 10B,omar,Secure123<br>Chemistry 10A,lina,</div></div>
+<div class="f2"><label>Upload file</label><div class="drop"><svg class="i"><use href="#upload"/></svg>Click to browse or drag &amp; drop (.csv, .xlsx, .xls)</div></div>
+<div class="ai">Need to format your list? Get an AI prompt</div>
+<div class="f2" style="margin-top:12px"><label>Password method (rows without a password)</label><div class="tg"><span class="on">Generate Random</span><span>Custom Password</span></div></div>
+</div></div>
+</div>
+
+<!-- T7 Notes -->
+<div class="tour flip">
+<div class="tx rv" data-sc="">
+<h3>Notes that keep working without a connection</h3>
+<p>Every account also has a private notes tab.</p>
+<ul>
+<li><b>Written on your device first.</b> Notes are stored locally and queued for sync, with a Synced indicator in the sidebar.</li>
+<li><b>Autosaves</b> as you type. Word count and reading time update live.</li>
+<li><b>Formatting toolbar:</b> bold, italic, underline, two heading levels, bullets, quotes, links and code.</li>
+<li><b>Search</b> across your notes from the sidebar or the command palette.</li>
+<li><b>Export</b> any note as Markdown, Word or plain text, or send it straight to an open assignment.</li>
+</ul>
+</div>
+<div class="stage tilt" data-sc=""><div class="win" role="img" aria-label="Time12 Notes tab with sidebar, editor and formatting toolbar">
+<div class="wbar"><i></i><i></i><i></i><span>time12.xin/dash</span></div>
+<div class="wbody"><div class="notes" style="min-width:560px">
+<div class="side">
+<div class="brand"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l3 3 5-6"/></svg>Time12</div>
+<div class="srch">Search the shelves...</div>
+<div class="lab">3 notes</div>
+<div class="nl"><div class="on">Pendulum method<small>Oct 10</small></div><div>Parent evening<small>Oct 7</small></div><div>Untitled<small>Oct 2</small></div></div>
+<div class="sf"><div><span><i></i>Synced</span><span>Shortcuts</span></div><div><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afcec6dcc7ceefc2dc81c7cedddb">[email&#160;protected]</a></span><span>Sign out</span></div></div>
+</div>
+<div class="ed">
+<div class="edt">Pendulum method</div>
+<div class="edm">Modified Oct 10 · 42 words</div>
+<div class="edb"><p><b>## Plan</b></p><p>- Five string lengths, ten swings each</p><p>- Time with a phone, average the runs</p><p>&gt; Plot T² against L. The slope gives g.</p></div>
+<div class="tb"><div style="display:flex;align-items:center;flex-wrap:wrap;gap:2px">
+<div class="tbg"><span>B</span><span style="font-style:italic">I</span><span style="text-decoration:underline">U</span></div><i class="tbs"></i>
+<div class="tbg"><span style="font-family:var(--serif)">H1</span><span style="font-family:var(--serif)">H2</span><span>•</span><span>”</span></div><i class="tbs"></i>
+<div class="tbg"><span><svg class="i" width="14" height="14" viewBox="0 0 24 24"><use href="#link"/></svg></span><span><svg class="i" width="14" height="14" viewBox="0 0 24 24"><use href="#code"/></svg></span></div></div>
+<div class="cnt"><b>42</b> words · <b>1</b> min read</div></div>
+</div>
+</div></div></div></div>
+</div>
+
+<!-- T-AI -->
+<div class="tour">
+<div class="tx rv" data-sc="">
+<h3>Let AI mark the work against your checklist</h3>
+<p>Create an Automated Task, write what to check for, and set a pass mark.</p>
+<ul>
+<li><b>You write the checklist:</b> a short marking scheme with marks for each point.</li>
+<li><b>You set the pass mark,</b> from 50% to 100%.</li>
+<li><b>Good work is accepted on the spot.</b> The rest goes back with feedback and a one-tap Fix and resubmit.</li>
+<li><b>Attempts to sway the AI are flagged</b> and sent back. Only the owner creates automated tasks.</li>
+</ul></div>
+<div class="stage tilt" data-sc=""><div class="dlg" role="img" aria-label="Automated task with a checklist and two AI-marked attempts">
+<div class="dt">Lab report: Pendulum</div><div class="dx">Automated · 10 marks · accepted at 60%</div>
+<div class="f2"><label>What to check for</label><div class="in v" style="align-items:flex-start;line-height:1.7;font-size:12px">- Five string lengths measured (4)<br>- T² plotted against L (4)<br>- g stated with units (2)</div></div>
+<div class="rw"><div class="m"><b>Attempt 1 · AI 5/10</b><small>Axes are unlabeled and g has no units.</small></div><span class="badge rejected n">Sent back</span></div>
+<div class="rw" style="margin-bottom:0"><div class="m"><b>Attempt 2 · AI 8/10</b><small>Clear graph, g = 9.7 m/s².</small></div><span class="badge done n">Accepted</span></div>
+</div></div>
+</div>
+
+<!-- T-Papers -->
+<div class="tour flip">
+<div class="tx rv" data-sc="">
+<h3>Papers turn finished work into a streak</h3>
+<p>Finish a task and get it checked and you earn a paper. Let one close unfinished and you lose one.</p>
+<ul>
+<li><b>Counted from the real task record,</b> so it cannot be faked.</li>
+<li><b>The Rewards tab</b> shows what you earned and lost. Organizations see every member side by side.</li>
+<li><b>Organizations can take papers back,</b> with a note the member can read.</li>
+<li><b>The Leaderboard</b> ranks public profiles by papers, kings or verified work. Tap a row to see someone's verified work and badges.</li>
+</ul></div>
+<div class="stage tilt" data-sc=""><div class="win" role="img" aria-label="Time12 Rewards tab with paper totals and a ranked list">
+<div class="wbody"><div class="app" style="min-width:0;padding-top:18px">
+<div class="mt">Rewards <img src="papery.png" alt="" width="26" style="vertical-align:-5px" onerror="this.remove()"></div>
+<div class="stats" style="grid-template-columns:repeat(4,1fr)"><div class="stat"><b>11</b><span>Papers</span></div><div class="stat"><b>14</b><span>Earned</span></div><div class="stat"><b>2</b><span>Lost</span></div><div class="stat"><b class="bad">1</b><span>Removed</span></div></div>
+<div class="sect">Leaderboard<small>Papers</small></div>
+<div class="rw"><div class="m"><b>aisha</b><small>Verified work: 31</small></div><span class="pc">31</span></div>
+<div class="rw"><div class="m"><b>mei</b><small>Verified work: 27</small></div><span class="pc">27</span></div>
+<div class="rw" style="margin-bottom:0"><div class="m"><b>omar</b><small>Verified work: 22</small></div><span class="pc">22</span></div>
+</div></div></div></div>
+</div>
+
+<!-- T-Index -->
+<div class="tour">
+<div class="tx rv" data-sc="">
+<h3>A private to-do, a focus box and a chess board</h3>
+<p>Small tools for the days between deadlines.</p>
+<ul>
+<li><b>Index</b> holds quick tasks only you can see. Type a line, press Enter, finish it by the end of tomorrow. The streak grows once a day and one failure resets it. It works offline.</li>
+<li><b>The toolbox</b> has a stopwatch, a Pomodoro timer, a YouTube player (video or audio only) and chess against the computer. Timers keep running while it is closed.</li>
+<li><b>Chess costs papers,</b> 5 by default, set by your organization. It unlocks once every assignment is handed in, and a win on Hard earns a king.</li>
+</ul></div>
+<div class="stage tilt" data-sc=""><div class="dlg" role="img" aria-label="Index window with a streak and three personal tasks">
+<div class="dt">Index</div><div class="dx">Tasks you give only to yourself.</div>
+<span class="badge review n">4 day streak</span>
+<div class="in" style="margin:12px 0">What will you get done? Press Enter</div>
+<div class="rw"><i class="chk on"></i><div class="m"><b style="text-decoration:line-through;color:var(--mute)">Read chapter 5</b><small>Submitted</small></div></div>
+<div class="rw"><i class="chk"></i><div class="m"><b>Redo the pendulum axes</b><small>Due tomorrow, 11:59 PM</small></div></div>
+<div class="rw" style="margin-bottom:0"><i class="chk"></i><div class="m"><b>Email Mr. Hart about the lab</b><small>Due tomorrow, 11:59 PM</small></div></div>
+</div></div>
+</div>
+
+<!-- T8 Palette -->
+<div class="tour flip">
+<div class="tx rv" data-sc="">
+<h3>Keyboard shortcuts and a command palette</h3>
+<p>Press <code>Ctrl K</code> to run a command or jump to a note without leaving the keyboard.</p>
+<ul>
+<li><b>Commands:</b> new note, save, delete, toggle theme, switch device mode, show shortcuts, sign out.</li>
+<li><b>Notes are searchable</b> by title and content right in the palette.</li>
+<li><b>Formatting keys:</b> <code>Ctrl B</code>, <code>Ctrl I</code> and <code>Ctrl L</code> for bold, italic and links.</li>
+</ul>
+</div>
+<div class="stage tilt" data-sc="" style="flex-direction:column;align-items:flex-start">
+<div class="pal" role="img" aria-label="Command palette">
+<div class="pi"><svg class="i"><use href="#search"/></svg>Type a command or search...</div>
+<div class="ps">Commands</div>
+<div class="pit sel"><svg class="i"><use href="#plus"/></svg>New note<span>Ctrl+N</span></div>
+<div class="pit"><svg class="i"><use href="#save"/></svg>Save note<span>Ctrl+S</span></div>
+<div class="pit"><svg class="i"><use href="#sun"/></svg>Toggle theme<span>Ctrl+J</span></div>
+<div class="pit"><svg class="i"><use href="#device"/></svg>Switch device mode (Higher / Lower End)</div>
+<div class="pit"><svg class="i"><use href="#kb"/></svg>Show shortcuts</div>
+<div class="ps">Notes</div>
+<div class="pit" style="padding-bottom:12px"><svg class="i"><use href="#note"/></svg>Pendulum method<span>Oct 10</span></div>
+</div>
+<div class="ks">
+<div><span>New note</span><span><i class="key">Ctrl</i><i class="key">N</i></span></div>
+<div><span>Save</span><span><i class="key">Ctrl</i><i class="key">S</i></span></div>
+<div><span>Command palette</span><span><i class="key">Ctrl</i><i class="key">K</i></span></div>
+<div><span>Toggle theme</span><span><i class="key">Ctrl</i><i class="key">J</i></span></div>
+</div>
+</div>
+</div>
+
+</div></section>
+
+<!-- ============ STACK ============ -->
+<section class="sec tint" id="stack"><div class="wrap">
+<h2>How it's built</h2>
+<p class="subh">Plain web technology, chosen to stay quick on school laptops and phones.</p>
+<div class="stack">
+<div data-sc="" class="card"><h3><span class="ic"><svg class="i"><use href="#code"/></svg></span>Vanilla JavaScript</h3><p>No front-end framework. The dashboard is a single page of ES modules, so there is nothing heavy to download or hydrate.</p></div>
+<div data-sc="" class="card"><h3><span class="ic"><svg class="i"><use href="#db"/></svg></span>Supabase</h3><p>Postgres and Edge Functions power sign-in, organizations, tasks, notes sync and file upload and download.</p></div>
+<div data-sc="" class="card"><h3><span class="ic"><svg class="i"><use href="#disk"/></svg></span>IndexedDB</h3><p>Notes live in your browser first, with a sync queue and an automatic sync every five seconds.</p></div>
+<div data-sc="" class="card"><h3><span class="ic"><svg class="i"><use href="#sheet"/></svg></span>SheetJS</h3><p>Reads <code>.xlsx</code>, <code>.xls</code> and <code>.csv</code> imports and writes your Excel exports, all inside the browser.</p></div>
+<div data-sc="" class="card"><h3><span class="ic"><svg class="i"><use href="#glow"/></svg></span>Flat and solid</h3><p>Pure white panels, or solid charcoal in dark mode. No blur, sheen or glow, so it stays steady on slower devices.</p></div>
+<div data-sc="" class="card"><h3><span class="ic"><svg class="i"><use href="#type"/></svg></span>DM Serif Display and DM Sans</h3><p>One serif for titles and one sans for everything else, in light and dark themes you can toggle with <code>Ctrl J</code>.</p></div>
+<div data-sc="" class="card wide"><h3><span class="ic"><svg class="i"><use href="#device"/></svg></span>Tuned to your device</h3>
+<p>On your first visit, Time12 asks what you are using. It also reads reduced-motion and data-saver settings and drops to a lighter mode on its own if frames run slow. Switch any time from the button beside the theme toggle.</p>
+<div class="dev"><div><svg class="i"><use href="#device"/></svg><b>Higher End Device</b>Full visuals and animations</div><div><svg class="i"><use href="#phone"/></svg><b>Lower End Device</b>No animations, lightweight and fast</div></div></div>
+<div data-sc="" class="card"><h3><span class="ic"><svg class="i"><use href="#lock"/></svg></span>UniClvrPass</h3><p>Accounts sign in with a username and password through UniClvrPass. No email address is required.</p></div>
+</div>
+</div></section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq"><div class="wrap">
+<h2>Common questions</h2>
+<div class="faq">
+<details data-sc=""><summary>Who creates tasks, groups and accounts?</summary><p>The organization account, meaning whoever registers. It adds groups, sub-groups and member accounts. Member accounts do not see the Add button in the Org tab.</p></details>
+<details data-sc=""><summary>What can a member hand in?</summary><p>Text, links and files, in any combination. Files can be up to 25 MB each. At least one of the three is required.</p></details>
+<details data-sc=""><summary>What happens when a submission is rejected?</summary><p>The task goes back to the member as Rejected, with your reason. They can resubmit until the deadline, and every attempt stays in the history as its own version.</p></details>
+<details data-sc=""><summary>What happens after the deadline?</summary><p>A task nobody handed in is marked overdue, and the member sees Deadline Passed — Submissions Closed. Analytics counts it as missed.</p></details>
+<details data-sc=""><summary>Can I export results?</summary><p>Yes. The Analytics tab has a Download Excel button for the current view: the whole organization, a group, a person or a single task.</p></details>
+<details data-sc=""><summary>Do I need an email address to sign up?</summary><p>No. You register with a username and a password. Accounts you create for members use the same, named under your organization.</p></details>
+<details data-sc=""><summary>What is an Automated Task?</summary><p>You write what to check for and a pass mark. The AI marks each submission against it, accepts work that clears the mark and sends the rest back with feedback. Only the organization owner can create one.</p></details>
+<details data-sc=""><summary>What are papers?</summary><p>You earn a paper for each task that is verified or accepted by the AI, and lose one for each task that closes unfinished. They are counted from the real task record and shown in the Rewards tab.</p></details>
+<details data-sc=""><summary>Can someone other than the owner run a group?</summary><p>Yes. Make them an admin of a group. They can send assignments, add and remove members and watch progress for that group and its sub-groups, and nothing outside them.</p></details>
+<details data-sc=""><summary>Does it work offline?</summary><p>Notes do. They are saved on your device first and sync when you are back online. Tasks and submissions need a connection.</p></details>
+</div>
+</div></section>
+
+<!-- ============ PARTNERS ============ -->
+<section class="sec partners" id="partners"><div class="wrap">
+<h2>Trusted partners</h2>
+<p class="subh">Tools and teams we work with and recommend.</p>
+</div>
+<div class="mq" data-sc="" aria-label="Trusted partners: Tabula, SmoothRecorder and Prod99"><div class="mq-track"></div></div>
+</section>
+
+<div class="final"><div class="wrap"><div class="band bnd" data-sc="">
+<h2 class="ln" data-sp>Create your first group.</h2>
+<p>Register with a username and password, create your first group, and see who is done, who is pending and who is late.</p>
+<a class="btn" href="https://time12.xin/dash">Open Time12 <svg class="i" width="18" height="18"><use href="#arrow"/></svg></a>
+</div></div></div>
+
+<footer><div class="wrap">
+<span>© <span id="yr">2026</span> Time12</span>
+<span>Make Time True · powered by UniClvrPass</span>
+</div></footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+var root=document.documentElement,fav=document.getElementById('favicon'),btn=document.getElementById('themeBtn');
+/* favicon + logo follow the theme: china.png on dark, taiwan.png on light */
+function skin(t){fav.href=t==='dark'?'china.png':'taiwan.png';btn.setAttribute('aria-pressed',t==='dark');}
+skin(root.getAttribute('data-theme'));
+btn.addEventListener('click',function(){
+var n=root.getAttribute('data-theme')==='dark'?'light':'dark';
+root.setAttribute('data-theme',n);
+try{localStorage.setItem('Time12-theme',n)}catch(e){}
+skin(n);
+});
+window.addEventListener('storage',function(e){
+if(e.key==='Time12-theme'&&(e.newValue==='light'||e.newValue==='dark')){root.setAttribute('data-theme',e.newValue);skin(e.newValue);}
+});
+document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+
+/* ---------- 60-day graph ---------- */
+(function(){
+var el=document.getElementById('g60');if(!el)return;
+var v=[],i,seed=7;
+for(i=0;i<60;i++){seed=(seed*37+11)%101;v.push(i%7===5||i%7===6?seed%2:1+seed%4);}
+var max=Math.max.apply(null,v),W=100,H=40,step=W/59,p='',a='M 0 '+H;
+v.forEach(function(c,j){var x=j*step,y=H-(c/max)*H*.92;p+=(j?' L ':'M ')+x.toFixed(2)+' '+y.toFixed(2);a+=' L '+x.toFixed(2)+' '+y.toFixed(2);});
+a+=' L '+W+' '+H+' Z';
+var g='';for(i=1;i<4;i++)g+='<line x1="0" y1="'+(H/4*i)+'" x2="'+W+'" y2="'+(H/4*i)+'"/>';
+el.innerHTML='<g class="ga-grid">'+g+'</g><path class="ga-area" d="'+a+'"/><path class="ga-line" d="'+p+'"/>';
+})();
+
+/* ---------- analytics trend bars ---------- */
+(function(){
+var el=document.getElementById('trend'),lab=document.getElementById('trendl');if(!el)return;
+var cols={done:'var(--ok)',late:'var(--warn)',review:'var(--acc)',open:'var(--mute)',missed:'var(--bad)'};
+var seed=3,h='',l='',i,d,mo=['Sep','Oct'];
+for(i=0;i<30;i++){
+seed=(seed*53+17)%97;
+var wk=((i+2)%7)>=5;
+if(wk&&seed%3){h+='<div class="w e"></div>';}
+else{
+var done=2+seed%5,late=seed%3===0?1:0,rev=i>26?1:0,open=i>27?2:0,miss=seed%11===0?1:0;
+var o={missed:miss,open:open,review:rev,late:late,done:done};
+h+='<div class="w">'+Object.keys(o).filter(function(k){return o[k]}).map(function(k){return '<i style="flex:'+o[k]+';background:'+cols[k]+'"></i>'}).join('')+'</div>';
+}
+d=new Date(2026,8,11+i);
+l+='<span>'+(i%5===0?mo[d.getMonth()===8?0:1]+' '+d.getDate():'')+'</span>';
+}
+el.innerHTML=h;lab.innerHTML=l;
+})();
+
+/* ---------- analytics ring ---------- */
+(function(){
+var el=document.getElementById('ringA');if(!el)return;
+var NS='http://www.w3.org/2000/svg',o=['done','done','done','done','done','done','done','done','late','review','open','missed'];
+var c={done:'var(--ok)',late:'var(--warn)',review:'var(--acc)',open:'var(--mute)',missed:'var(--bad)'};
+o.forEach(function(k,i){
+var a=(i/o.length)*2*Math.PI-Math.PI/2,co=Math.cos(a),si=Math.sin(a),l=document.createElementNS(NS,'line');
+l.setAttribute('x1',(75+co*54).toFixed(1));l.setAttribute('y1',(75+si*54).toFixed(1));
+l.setAttribute('x2',(75+co*70).toFixed(1));l.setAttribute('y2',(75+si*70).toFixed(1));
+l.setAttribute('style','stroke:'+c[k]+';stroke-width:5;stroke-linecap:round');
+el.appendChild(l);
+});
+})();
+
+/* ---------- cinematic scroll engine ---------- */
+(function(){
+var d=document,de=d.documentElement,g=function(i){return d.getElementById(i)},pin=g('pin'),sty=g('story'),au=g('aur'),num=g('num'),ring=g('ring');
+d.querySelectorAll('[data-sp]').forEach(function(e){var t=e.textContent;e.setAttribute('aria-hidden','true');e.innerHTML=t.split('').map(function(c,i){return '<span class="c" style="--i:'+i+'">'+(c===' '?'\u00a0':c)+'</span>'}).join('')});
+var cs=['ok','ok','ok','ok','ok','ok','ok','ok','ok','acc','warn','bad'],L=[0,40,-40,20,-20,55,-55,10,-10,30,-30,0];
+ring.innerHTML=cs.map(function(c,i){return '<div class="pn" style="--i:'+i+';--c:var(--'+c+');--l:'+L[i]+';--sx:'+(((i*37)%11-5)*11)+';--sy:'+(((i*53)%9-4)*12)+';--sz:'+(((i*29)%7)*-9)+';--sr:'+(((i*41)%13-6)*28)+'"><i></i></div>'}).join('');
+var SH={cube:'<div class="k-cube">'+'<u></u>'.repeat(6)+'</div>',gyro:'<div class="k-gyro">'+[0,1,2,3,4,5].map(function(i){return '<u style="--i:'+i+'"></u>'}).join('')+'<u></u></div>',slabs:'<div class="k-slabs">'+[0,1,2,3,4].map(function(i){return '<u style="--i:'+i+'"></u>'}).join('')+'</div>',torus:'<div class="k-torus">'+[0,1,2,3,4,5,6,7,8,9,10,11].map(function(i){return '<u style="--i:'+i+'"></u>'}).join('')+'</div>'};
+d.querySelectorAll('.sh[data-k]').forEach(function(e){e.innerHTML=SH[e.getAttribute('data-k')];});
+var geo=g('geo');
+if(matchMedia('(pointer:fine)').matches)d.querySelectorAll('.card').forEach(function(c){c.addEventListener('pointermove',function(e){var b=c.getBoundingClientRect();c.style.setProperty('--ry',((e.clientX-b.left)/b.width-.5)*14+'deg');c.style.setProperty('--rx',(.5-(e.clientY-b.top)/b.height)*14+'deg');});c.addEventListener('pointerleave',function(){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg');});});
+['#tour','#stack','#faq','#partners'].forEach(function(q){var h=d.querySelector(q+' h2');if(h){h.classList.add('mh');h.setAttribute('data-sc','');h.innerHTML='<span>'+h.innerHTML+'</span>';}});
+d.querySelectorAll('#tour>.wrap>.subh,#stack .subh,#partners .subh').forEach(function(e){e.classList.add('rv');e.setAttribute('data-sc','');});
+d.querySelectorAll('footer .wrap').forEach(function(e){e.classList.add('rv');e.setAttribute('data-sc','');});
+var rm=false,cn=navigator.connection||{};
+if(matchMedia('(prefers-reduced-motion:reduce)').matches)de.classList.add('calm');
+if(cn.saveData||(navigator.deviceMemory&&navigator.deviceMemory<=2))de.classList.add('lite');
+var els=[].slice.call(d.querySelectorAll('[data-sc]')),pgb=g('pgb'),nav=g('nav'),ly=0,vh=innerHeight,raf=0,lp=-1,ln=-1,lg=-1,lt=0,fr=0,sl=0;
+function cl(v){return v<0?0:v>1?1:v}
+function run(t){
+raf=0;vh=innerHeight;
+if(!rm&&lt){var dt=t-lt;if(dt<120){fr++;sl+=dt;if(fr===80&&sl/fr>38)de.classList.add('lite');}}lt=t;
+var r=sty.getBoundingClientRect(),rs=els.map(function(e){return e.getBoundingClientRect()});
+var p=rm?1:cl(-r.top/(r.height-vh));
+if(p!==lp){lp=p;pin.style.setProperty('--p',p.toFixed(3));
+var n=Math.round(cl((p-.44)/.14)*9);if(n!==ln){ln=n;num.textContent=n;}
+var o=p>.84?1:0;if(o!==lg){lg=o;pin.classList.toggle('go',!!o);}}
+var y=scrollY;au.style.setProperty('--sy',y);geo.style.setProperty('--g',(y/Math.max(1,de.scrollHeight-vh)).toFixed(4));geo.style.setProperty('--gv',cl((y-(sty.offsetHeight-vh)*.9)/(vh*.6)).toFixed(3));pgb.style.setProperty('--pg',(y/Math.max(1,de.scrollHeight-vh)).toFixed(4));
+if(y>vh*.8){if(y>ly+6)nav.classList.add('hide');else if(y<ly-6)nav.classList.remove('hide');}else nav.classList.remove('hide');ly=y;
+els.forEach(function(e,i){var b=rs[i],m=e.getAttribute('data-sc'),v=rm?1:m==='pin'?cl(-b.top/(b.height-vh)):m==='tall'?cl((vh*.7-b.top)/b.height):m==='run'?cl((vh-b.top)/(vh+b.height)):cl((vh-b.top)/(vh*.55));
+v=Math.round(v*500)/500;if(e._v!==v){e._v=v;e.style.setProperty('--e',v);}});
+}
+function tick(){if(!raf)raf=requestAnimationFrame(run);}
+addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);tick();
+})();
+
+/* ---------- partners marquee (theme-aware logos) ---------- */
+(function(){
+var P=[['tabula','Tabula'],['smoothrec','SmoothRecorder'],['prod99','Prod99']],imgs=[];
+function th(){return document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';}
+function set(hidden){
+var d=document.createElement('div');d.className='mq-set';if(hidden)d.setAttribute('aria-hidden','true');
+for(var r=0;r<4;r++)P.forEach(function(p){
+var t=document.createElement('div');t.className='pl';
+var im=document.createElement('img');im.setAttribute('data-n',p[0]);im.src=p[0]+th()+'.png';im.alt=hidden?'':p[1];im.loading='lazy';
+im.onerror=function(){var s=document.createElement('span');s.textContent=p[1];if(t.contains(im))t.replaceChild(s,im);};
+imgs.push(im);t.appendChild(im);d.appendChild(t);});
+return d;}
+document.querySelectorAll('.mq-track').forEach(function(track){track.appendChild(set(false));track.appendChild(set(true));});
+new MutationObserver(function(){imgs.forEach(function(im){im.src=im.getAttribute('data-n')+th()+'.png';});}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+
+/* ---------- how-it-works paper slip ---------- */
+(function(){var how=document.getElementById('how'),sl=document.getElementById('slip');if(!how||!sl)return;
+var T=[['Not assigned yet',''],['Not started',''],['Pending',''],['Rejected','Missing sources. Add two and send it again.'],['Completed','Resubmitted as v2. Verified.']],st=sl.querySelector('.sst'),nt=sl.querySelector('.note'),last=-1;
+function f(){var b=how.getBoundingClientRect(),v=Math.max(0,Math.min(1,-b.top/(b.height-innerHeight))),i=Math.round(v*4);if(i!==last){last=i;sl.setAttribute('data-s',i);st.textContent=T[i][0];nt.textContent=T[i][1];}}
+addEventListener('scroll',f,{passive:true});f();})();
+</script>
+</body>
+</html>
